@@ -94,7 +94,7 @@ const MenuLink = styled.span`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.black};
+  /* color: ${({ theme }) => theme.black}; */
 
   :hover {
     color: ${({ theme }) => theme.darkgrey};
@@ -234,7 +234,7 @@ const Menu = ({ isOpen, onClick }: Props) => {
             placeholder="Wyszukaj"
           />
         </label>
-        <Link href={`/search?query=${searchQuery}`}>
+        <Link to={`/search?query=${searchQuery}`}>
           <StyledButton onClick={onClick}>Szukaj</StyledButton>
         </Link>
       </form>
@@ -245,46 +245,34 @@ const Menu = ({ isOpen, onClick }: Props) => {
         {showDropdown && (
           <>
             <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/youtube">
-                <a>YouTube</a>
+              <StyledLink to="/category/youtube">YouTube</StyledLink>
+            </MenuLink>
+            <MenuLink onClick={onClick} isOpen={isOpen}>
+              <StyledLink to="/category/medyczna-marihuana">
+                Medyczna Marihuana
               </StyledLink>
             </MenuLink>
             <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/medyczna-marihuana">
-                <a>Medyczna Marihuana</a>
+              <StyledLink to="/category/marihuana">Marihuana</StyledLink>
+            </MenuLink>
+            <MenuLink onClick={onClick} isOpen={isOpen}>
+              <StyledLink to="/category/kronika-kryminalna">
+                Kronika Kryminalna
               </StyledLink>
             </MenuLink>
             <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/marihuana">
-                <a>Marihuana</a>
-              </StyledLink>
+              <StyledLink to="/category/polska">Polska</StyledLink>
             </MenuLink>
             <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/kronika-kryminalna">
-                <a>Kronika Kryminalna</a>
-              </StyledLink>
+              <StyledLink to="/category/recenzje">Recenzje</StyledLink>
             </MenuLink>
             <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/polska">
-                <a>Polska</a>
-              </StyledLink>
-            </MenuLink>
-            <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/recenzje">
-                <a>Recenzje</a>
-              </StyledLink>
-            </MenuLink>
-            <MenuLink onClick={onClick} isOpen={isOpen}>
-              <StyledLink href="/category/zdrowie">
-                <a>Zdrowie</a>
-              </StyledLink>
+              <StyledLink to="/category/zdrowie">Zdrowie</StyledLink>
             </MenuLink>
           </>
         )}
         <MenuLink onClick={onClick} isOpen={isOpen}>
-          <StyledLink href="/discounts">
-            <a>Rabaty</a>
-          </StyledLink>
+          <StyledLink to="/discounts">Rabaty</StyledLink>
         </MenuLink>
         <MenuLink onClick={onClick} isOpen={isOpen}>
           <a href="https://rollmops.pl/?utm_source=weedweek.pl">
@@ -298,9 +286,7 @@ const Menu = ({ isOpen, onClick }: Props) => {
           <a href="https://app.rollmops.pl/">Aplikacja</a>
         </MenuLink>
         <MenuLink onClick={onClick} isOpen={isOpen}>
-          <StyledLink href="/contact">
-            <a>Kontakt</a>
-          </StyledLink>
+          <StyledLink to="/contact">Kontakt</StyledLink>
         </MenuLink>
       </MenuLinksWrapper>
       <div style={{ display: 'flex' }}>

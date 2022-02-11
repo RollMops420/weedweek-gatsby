@@ -449,7 +449,7 @@ const authorization =
 
 const PostPage = ({ data }: Props) => {
   const { adB, adC, adE, post, newests, nasiona } = data;
-  const related = post.related_posts?.nodes;
+  const related = post ? post.related_posts?.nodes : [];
   const [bannerVisible, setBanner] = useState(0);
   const [views, setViews] = useState(null);
   const [firstPost, setFirstPost] = useState<Post | null>(null);
@@ -612,6 +612,8 @@ const PostPage = ({ data }: Props) => {
   useInterval(() => {
     setBanner((prevState) => (prevState ? 0 : 1));
   }, 3000);
+
+  if (!post) return null;
 
   return (
     <Container full>

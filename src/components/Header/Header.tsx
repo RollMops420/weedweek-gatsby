@@ -132,7 +132,7 @@ const CategoriesMobile = styled.div`
   }
 `;
 
-const Category = styled.a`
+const Category = styled(Link)`
   color: ${({ theme }) => theme.grey};
   padding: 20px 0;
   margin-right: 20px;
@@ -235,14 +235,12 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
           </CheckBoxWrapper>
         </div>
         <Categories>
-          <Link to={`/clinics`}>
-            <Category>Kliniki Konopne</Category>
-          </Link>
+          <Category to={`/clinics`}>Kliniki Konopne</Category>
           {categories.nodes.map((category, i) =>
             category.slug !== 'bez-kategorii' && i !== 0 ? (
-              <Link key={category.slug} to={`/category/${category.slug}`}>
-                <Category>{category.name}</Category>
-              </Link>
+              <Category key={category.slug} to={`/category/${category.slug}`}>
+                {category.name}
+              </Category>
             ) : null
           )}
         </Categories>
@@ -258,14 +256,12 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
         />
       </InnerWrapper>
       <CategoriesMobile>
-        <Link to={`/clinics`}>
-          <Category>Kliniki Konopne</Category>
-        </Link>
+        <Category to={`/clinics`}>Kliniki Konopne</Category>
         {categories.nodes.map((category) =>
           category.slug !== 'bez-kategorii' ? (
-            <Link key={category.slug} to={`/category/${category.slug}`}>
-              <Category>{category.name}</Category>
-            </Link>
+            <Category key={category.slug} to={`/category/${category.slug}`}>
+              {category.name}
+            </Category>
           ) : null
         )}
       </CategoriesMobile>
