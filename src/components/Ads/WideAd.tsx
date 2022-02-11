@@ -1,5 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,6 +14,11 @@ const Wrapper = styled.div`
   }
 `;
 
+const Image = styled(GatsbyImage)`
+  width: 100%;
+  border-radius: 10px;
+`;
+
 const Letter = styled.span`
   font-size: 48px;
   position: absolute;
@@ -23,26 +29,12 @@ const Letter = styled.span`
   font-weight: bold;
 `;
 
-const WideAd = ({ source, href }: { source: string; href: string }) => {
+const WideAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer nofollow">
-      <Wrapper>
-        <Image
-          src={source.replace(
-            'https://res.cloudinary.com/weedweek/images/f_auto,q_60',
-            '',
-          )}
-          alt="Reklama"
-          layout="fill"
-          objectFit="cover"
-          sizes="(max-width: 500px) 480px,(max-width: 991px) 991px, 768px"
-          priority
-          loader={source.includes('admin.') ? ({ src }) => src : undefined}
-        />
-        {/* <Letter>
-          A
-        </Letter> */}
-      </Wrapper>
+      {/* <Wrapper> */}
+      <Image image={getImage(source)} alt="" />
+      {/* </Wrapper> */}
     </a>
   );
 };

@@ -1,5 +1,5 @@
-import { forwardRef } from 'react';
-import Link from 'next/link';
+import React, { forwardRef } from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 const Wrapper = styled.div<any>`
@@ -48,7 +48,7 @@ const Section = forwardRef((props: any, ref: any) => (
       <TitleWrapper>
         {props.title && <Title>{props.title}</Title>}
         {props.showMore && (
-          <Link href={props.showMore} passHref>
+          <Link to={props.showMore}>
             <StyledLink>Zobacz więcej</StyledLink>
           </Link>
         )}

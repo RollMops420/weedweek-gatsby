@@ -1,5 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import React from 'react';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
@@ -35,10 +36,8 @@ const Wrapper = styled.article`
   }
 `;
 
-const ImageWrapper = styled.div`
-  position: relative;
+const Image = styled(GatsbyImage)`
   margin-right: 10px;
-  overflow: hidden;
   width: 35%;
   height: 100px;
   border-radius: 8px;
@@ -81,27 +80,17 @@ const Date = styled.p`
 
 const Post = ({ post, circle = false }: Props) => {
   return (
-    <Link href={`/${post.node.slug}`} passHref>
+    <Link to={`/${post.node.slug}`}>
       <StyledLink>
         <Wrapper>
-          <ImageWrapper circle={circle}>
-            <Image
-              src={post.node.featuredImage.node.sourceUrl.replace(
-                'https://res.cloudinary.com/weedweek/images/f_auto,q_60',
-                '',
-              )}
-              alt={post.node.title}
-              layout="fill"
-              objectFit="cover"
-              sizes="(max-width: 500px) 128px,(max-width: 991px) 256px, 256px"
-              priority
-              loader={
-                post.node.featuredImage.node.sourceUrl.includes('admin.')
-                  ? ({ src }) => src
-                  : undefined
-              }
-            />
-          </ImageWrapper>
+          <Image
+            image={
+              post.node.featuredImage.node.localFile.childImageSharp
+                .gatsbyImageData
+            }
+            alt={post.node.title}
+            circle={circle}
+          />
           <Content circle={circle}>
             <Heading>
               {post.node.title.substring(0, 65)}

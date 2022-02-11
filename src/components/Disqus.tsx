@@ -1,3 +1,4 @@
+import React from 'react';
 import { DiscussionEmbed } from 'disqus-react';
 
 const Disqus = ({ slug, id, title }: any) => {

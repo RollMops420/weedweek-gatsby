@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import ShoppingSVG from '../../assets/icons/shopping-bag.svg';

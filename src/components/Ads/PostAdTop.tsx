@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Image from 'next/image';
+import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
 
 const Wrapper = styled.div`
   width: 100%;

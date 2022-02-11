@@ -1,5 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import React from 'react';
+import { Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import ArrowLeftIcon from 'assets/icons/arrowleft';
@@ -26,12 +27,11 @@ const ShopName = styled.a`
   font-weight: bold;
 `;
 
-const ImageWrapper = styled.div`
-  background-color: #fff;
-  position: relative;
-  padding-bottom: 100%;
+const Image = styled(GatsbyImage)`
   border-radius: 10px;
-  overflow: hidden;
+  background-color: #fff;
+  width: 100%;
+  height: 400px;
 `;
 
 const Content = styled.div`
@@ -123,10 +123,12 @@ const Button = styled.a<any>`
   }) => (secondary ? theme.four : theme.primary)};
 `;
 
-const Products = ({ products }) => {
+const Products = ({ products = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [show] = useState(products.length <= 4 ? products.length : 4);
-  const [length, setLength] = useState(products.length);
+  const [show] = useState(
+    products && products.length <= 4 ? products.length : 4
+  );
+  const [length, setLength] = useState(products && products.length);
 
   const [touchPosition, setTouchPosition] = useState(null);
 
@@ -183,7 +185,6 @@ const Products = ({ products }) => {
 
     setTouchPosition(null);
   };
-
   return (
     <Grid>
       {currentIndex > 0 && (
@@ -200,29 +201,42 @@ const Products = ({ products }) => {
             transform: `translateX(-${currentIndex * (100 / show)}%)`,
           }}
         >
-          {products.map((product) => (
-            <Wrapper key={product.id}>
-              {/* <Link href="https://rollmops.pl/" passHref>
-            <ShopName>{product.shopName}</ShopName>
-          </Link> */}
-              <ImageWrapper>
+          {products.map((node) => {
+            const product = node.node;
+            return (
+              <Wrapper key={product.id}>
+                {/* <Link href="https://rollmops.pl/" passHref>
+              <ShopName>{product.shopName}</ShopName>
+            </Link> */}
                 {product.featuredImage && (
                   <Image
-                    src={product.featuredImage.node.sourceUrl}
-                    layout="fill"
-                    loader={({ src }) => src}
+                    image={getImage(
+                      product.featuredImage.node.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
                   />
                 )}
-              </ImageWrapper>
-              <Content>
-                <Price>{product.details.price} zł</Price>
-                <Name dangerouslySetInnerHTML={{ __html: product.title }} />
-                {product.details.review ? (
-                  <Buttons>
-                    <Link href={`/${product.details.review.slug}`} passHref>
-                      <Button>RECENZJA</Button>
-                    </Link>
-                    {product.details.shop && (
+                <Content>
+                  <Price>{product.details.price} zł</Price>
+                  <Name dangerouslySetInnerHTML={{ __html: product.title }} />
+                  {product.details.review ? (
+                    <Buttons>
+                      <Link to={`/${product.details.review.slug}`}>
+                        <Button>RECENZJA</Button>
+                      </Link>
+                      {product.details.shop && (
+                        <Button
+                          secondary={true}
+                          href={product.details.shop}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow"
+                        >
+                          SKLEP
+                        </Button>
+                      )}
+                    </Buttons>
+                  ) : (
+                    product.details.shop && (
                       <Button
                         secondary={true}
                         href={product.details.shop}
@@ -231,23 +245,12 @@ const Products = ({ products }) => {
                       >
                         SKLEP
                       </Button>
-                    )}
-                  </Buttons>
-                ) : (
-                  product.details.shop && (
-                    <Button
-                      secondary={true}
-                      href={product.details.shop}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                    >
-                      SKLEP
-                    </Button>
-                  )
-                )}
-              </Content>
-            </Wrapper>
-          ))}
+                    )
+                  )}
+                </Content>
+              </Wrapper>
+            );
+          })}
         </ContentCarousel>
       </ContentWrapper>
       {currentIndex < length - show && (

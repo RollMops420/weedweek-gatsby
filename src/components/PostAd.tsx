@@ -1,5 +1,6 @@
-import styled from 'styled-components'
-import Image from 'next/image'
+import React from 'react';
+import styled from 'styled-components';
+import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const Letter = styled.span`
   font-size: 48px;
@@ -22,7 +23,7 @@ const Letter = styled.span`
   transform: translate(-50%, -50%);
   font-family: 'Poppins';
   font-weight: bold;
-`
+`;
 
 const WideAd = () => {
   return (
@@ -31,11 +32,9 @@ const WideAd = () => {
         src="/images/widead.png"
         layout="fill"
       /> */}
-      <Letter>
-        C
-      </Letter>
+      <Letter>C</Letter>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default WideAd
+export default WideAd;

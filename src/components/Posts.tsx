@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import Link from 'next/link';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
 import Category from 'components/Category';
@@ -51,15 +52,21 @@ const PostWrapper = styled.article`
 
 const ImageWrapper = styled.div`
   position: relative;
-  padding-bottom: 50%;
   border-radius: 10px;
+  height: 150px;
   overflow: hidden;
+`;
+
+const Image = styled(GatsbyImage)`
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Heading = styled.h3`
   color: ${({ theme }) => theme.heading};
   font-size: ${({ theme }) => theme.font.size.xs};
   margin: 0;
+  margin-top: 10px;
 `;
 
 const StyledCategory = styled(Category)`
@@ -75,7 +82,7 @@ interface Props {
 }
 
 const Post = ({ post }: any) => (
-  <Link href={`/${post.slug}`} passHref>
+  <Link to={`/${post.slug}`}>
     <PostLink aria-label={post.title}>
       <PostWrapper>
         <ImageWrapper>
@@ -85,19 +92,11 @@ const Post = ({ post }: any) => (
             </StyledCategory>
           )}
           <Image
-            src={post.featuredImage.node.sourceUrl.replace(
-              'https://res.cloudinary.com/weedweek/images/f_auto,q_60',
-              '',
+            image={getImage(
+              post.featuredImage.node.localFile.childImageSharp.gatsbyImageData
             )}
             alt={post.title}
-            layout="fill"
             objectFit="cover"
-            sizes="(max-width: 500px) 440px,(max-width: 991px) 950px, 768px"
-            loader={
-              post.featuredImage.node.sourceUrl.includes('admin.')
-                ? ({ src }) => src
-                : undefined
-            }
           />
         </ImageWrapper>
         <div>
@@ -111,7 +110,7 @@ const Post = ({ post }: any) => (
 const Posts = ({ posts, isList }: Props) => (
   <Grid list={isList}>
     {posts.map((post, index) => {
-      return <Post post={post.node} key={index} />;
+      return <Post post={post.node ? post.node : post} key={index} />;
     })}
   </Grid>
 );

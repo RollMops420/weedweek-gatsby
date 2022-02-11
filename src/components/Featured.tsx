@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import dayjs from 'dayjs';
 import Category from 'components/Category';
 import 'dayjs/locale/pl';
@@ -22,8 +23,10 @@ const Wrapper = styled.article`
   }
 `;
 
-const ImageWrapper = styled.div`
-  padding-bottom: 55%;
+const Image = styled(GatsbyImage)`
+  /* padding-bottom: 30%; */
+  object-fit: cover;
+  width: 100%;
 `;
 
 const Content = styled.div`
@@ -62,39 +65,26 @@ interface Props {
 
 const Featured = ({ post }: Props) => {
   return (
-    <Link href={`/${post.node.slug}`} passHref>
-      <a aria-label={post.node.title}>
-        <Wrapper>
-          <ImageWrapper>
-            <Image
-              src={post.node.featuredImage.node.sourceUrl.replace(
-                'https://res.cloudinary.com/weedweek/images/f_auto,q_60',
-                '',
-              )}
-              alt={post.node.title}
-              layout="fill"
-              objectFit="cover"
-              sizes="(max-width: 500px) 480px,(max-width: 991px) 991px, 768px"
-              priority
-              loader={
-                post.node.featuredImage.node.sourceUrl.includes('admin.')
-                  ? ({ src }) => src
-                  : undefined
-              }
-            />
-          </ImageWrapper>
-          <Content>
-            <Category slug={post.node.categories.nodes[0].slug}>
-              {post.node.categories.nodes[0].name}
-            </Category>
-            <h2>{post.node.title}</h2>
-            <Info>
-              {post.node.author.node.firstName} {post.node.author.node.lastName}{' '}
-              &bull; {dayjs(post.node.date).format('DD MMMM YYYY')}
-            </Info>
-          </Content>
-        </Wrapper>
-      </a>
+    <Link to={`/${post.node.slug}`}>
+      <Wrapper>
+        <Image
+          image={
+            post.node.featuredImage.node.localFile.childImageSharp
+              .gatsbyImageData
+          }
+          alt={post.node.title}
+        />
+        <Content>
+          <Category slug={post.node.categories.nodes[0].slug}>
+            {post.node.categories.nodes[0].name}
+          </Category>
+          <h2>{post.node.title}</h2>
+          <Info>
+            {post.node.author.node.firstName} {post.node.author.node.lastName}{' '}
+            &bull; {dayjs(post.node.date).format('DD MMMM YYYY')}
+          </Info>
+        </Content>
+      </Wrapper>
     </Link>
   );
 };

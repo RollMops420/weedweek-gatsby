@@ -1,6 +1,7 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import CloseIcon from 'assets/icons/close';
 
 interface WrapperProps {
@@ -25,19 +26,10 @@ const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding-bottom: 100%;
-`;
-
 const CloseWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
   padding: 10px;
-  z-index: 999;
+  text-align: right;
+  padding-top: 0;
   &:hover {
     cursor: pointer;
   }
@@ -66,22 +58,23 @@ interface Props {
   banners: Banner[];
 }
 
-const PopupAd = ({ banners }: Props) => {
-  const [bannerVisible, setBanner] = useState(0);
+const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
   const [isVisible, setVisible] = useState(false);
+  const hrefWithRef = new URL(href);
+  hrefWithRef.searchParams.append('utm_source', 'weedweek.pl');
 
   useEffect(() => {
     const showTimeout = setTimeout(() => {
-      let found = localStorage.getItem(`popup-herbata-${banners[0].href}`);
+      let found = localStorage.getItem(`popup-herbata-${href}`);
       if (!found) {
         setVisible(true);
-        localStorage.setItem(`popup-herbata-${banners[0].href}`, '0');
+        localStorage.setItem(`popup-herbata-${href}`, '0');
       }
       if (found && Number(found) < 3) {
         setVisible(true);
         localStorage.setItem(
-          `popup-herbata-${banners[0].href}`,
-          (Number(found) + 1).toString(),
+          `popup-herbata-${href}`,
+          (Number(found) + 1).toString()
         );
       }
     }, 5000);
@@ -107,28 +100,11 @@ const PopupAd = ({ banners }: Props) => {
         <CloseIcon width={48} height={48} />
       </CloseWrapper>
       <a
-        href={`${banners[bannerVisible].href}?utm_source=weedweek.pl`}
+        href={hrefWithRef.href}
         target="_blank"
         rel="noopener noreferrer nofollow"
       >
-        <ImageWrapper>
-          <Image
-            src={banners[bannerVisible].source.replace(
-              'https://res.cloudinary.com/weedweek/images/f_auto,q_60',
-              '',
-            )}
-            alt="Reklama"
-            layout="fill"
-            objectFit="cover"
-            sizes="(max-width: 500px) 480px,(max-width: 991px) 991px, 768px"
-            priority
-            loader={
-              banners[bannerVisible].source.includes('admin.')
-                ? ({ src }) => src
-                : undefined
-            }
-          />
-        </ImageWrapper>
+        <GatsbyImage image={getImage(source)} alt="" />
       </a>
     </Wrapper>
   );

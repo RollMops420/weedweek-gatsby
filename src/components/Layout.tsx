@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
+import { Link } from 'gatsby';
 
 interface Props {
   children: ReactNode;
@@ -18,7 +18,7 @@ const Layout = ({ children }: Props) => {
       {/* <PromoTop /> */}
       {children}
       <Footer>
-        <Link href="/regulamin.html" passHref>
+        <Link to="/regulamin.html">
           <a>Regulamin</a>
         </Link>
         &copy; 2021 by Code Green

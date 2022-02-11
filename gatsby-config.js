@@ -4,45 +4,58 @@ module.exports = {
     siteUrl: `https://www.weedweek.pl`,
   },
   plugins: [
-    "gatsby-plugin-root-import",
+    'gatsby-plugin-root-import',
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-typescript',
     {
-      resolve: `gatsby-plugin-typescript`,
+      resolve: 'gatsby-source-wordpress',
       options: {
-        isTSX: true,
-        jsxPragma: `jsx`,
-        allExtensions: true,
-      },
-    },
-    {
-      resolve: "gatsby-source-wordpress",
-      options: {
-        url: "https://admin.weedweek.pl/graphql/",
+        url: 'https://admin.weedweek.pl/graphql/',
         schema: {
-          perPage: 20, // currently set to 100
-          requestConcurrency: 5, // currently set to 15
-          previewRequestConcurrency: 2, // currently set to 5
+          perPage: 100, // currently set to 100
+          requestConcurrency: 15, // currently set to 15
+          previewRequestConcurrency: 5, // currently set to 5
+        },
+        develop: {
+          hardCacheMediaFiles: true,
+        },
+        type: {
+          Post: {
+            limit: process.env.NODE_ENV === `development` ? 20 : 5000,
+          },
+          Tag: {
+            limit: process.env.NODE_ENV === `development` ? 50 : 5000,
+          },
         },
       },
     },
-    "gatsby-plugin-styled-components",
+    'gatsby-plugin-styled-components',
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
-        trackingId: "UA-149509361-1",
+        rule: {
+          include: /assets/, // See below to configure properly
+        },
       },
     },
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        name: "images",
-        path: "./src/images/",
+        trackingId: 'UA-149509361-1',
       },
-      __key: "images",
+    },
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: './src/images/',
+      },
+      __key: 'images',
     },
   ],
 };

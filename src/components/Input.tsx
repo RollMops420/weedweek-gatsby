@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.input`
   width: 100%;
@@ -11,12 +12,10 @@ const Wrapper = styled.input`
     border: 1px solid ${({ theme }) => theme.light.primary};
     padding: 9px 19px;
   }
-`
+`;
 
 const Input = (props: any) => {
-  return (
-    <Wrapper {...props} />
-  )
-}
+  return <Wrapper {...props} />;
+};
 
-export default Input
+export default Input;

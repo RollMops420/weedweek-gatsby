@@ -1,5 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+// import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
 
 const Wrapper = styled.div`
   border-radius: 30px;

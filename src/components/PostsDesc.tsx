@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import Link from 'next/link';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 import { Post as IPost } from 'types/types';
 
 interface Props {
@@ -62,22 +63,15 @@ const PostsDesc = ({ posts }: Props) => {
   return (
     <>
       {posts.map((post) => (
-        <Link key={post.node.slug} href={`/${post.node.slug}`} passHref>
+        <Link key={post.node.slug} to={`/${post.node.slug}`}>
           <a>
             <PostWrapper>
               <ImageWrapper>
-                <Image
-                  src={post.node.featuredImage.node.sourceUrl.replace(
-                    'https://res.cloudinary.com/weedweek/images/f_auto,q_60',
-                    '',
+                <GatsbyImage
+                  image={getImage(
+                    post.node.featuredImage.node.localFile.childImageSharp
+                      .gatsbyImageData
                   )}
-                  objectFit="cover"
-                  layout="fill"
-                  loader={
-                    post.node.featuredImage.node.sourceUrl.includes('admin.')
-                      ? ({ src }) => src
-                      : undefined
-                  }
                 />
               </ImageWrapper>
               <div>
@@ -86,7 +80,7 @@ const PostsDesc = ({ posts }: Props) => {
                   dangerouslySetInnerHTML={{
                     __html: post.node.excerpt.replace(
                       '[&hellip;]',
-                      '<strong>WIĘCEJ</strong>',
+                      '<strong>WIĘCEJ</strong>'
                     ),
                   }}
                 />

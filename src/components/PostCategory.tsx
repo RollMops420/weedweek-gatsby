@@ -1,5 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import React from 'react';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
@@ -38,12 +39,22 @@ const Wrapper = styled.article`
   }
 `;
 
-const ImageWrapper = styled.div`
-  position: relative;
+const ImageNormal = styled.img`
   margin-right: 10px;
-  overflow: hidden;
   width: 100%;
-  padding-bottom: 56.25%;
+  border-radius: 8px;
+  ${({ circle }: { circle: boolean }) =>
+    circle &&
+    `
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+  `}
+`;
+
+const Image = styled(GatsbyImage)`
+  margin-right: 10px;
+  width: 100%;
   border-radius: 8px;
   ${({ circle }: { circle: boolean }) =>
     circle &&
@@ -92,39 +103,35 @@ const Date = styled.p`
 
 const Post = ({ post, circle = false }: Props) => {
   return (
-    <Link href={`/${post.node.slug}`}>
-      <StyledLink>
-        <Wrapper>
-          <ImageWrapper circle={circle}>
-            <Image
-              src={post.node.featuredImage.node.sourceUrl.substring(
-                post.node.featuredImage.node.sourceUrl.indexOf('v'),
-                9999,
-              )}
-              layout="fill"
-              objectFit="cover"
-              loader={
-                post.node.featuredImage.node.sourceUrl.includes('admin.')
-                  ? ({ src }) => src
-                  : undefined
-              }
-            />
-          </ImageWrapper>
-          <Content>
-            <div>
-              <Heading dangerouslySetInnerHTML={{ __html: post.node.title }} />
-              <Excerpt
-                dangerouslySetInnerHTML={{ __html: post.node.excerpt }}
-              />
-            </div>
-            <Date>
-              {/* {post.node.author.node.firstName} {post.node.author.node.lastName}{' '} */}
-              {/* &bull;  */}
-              {dayjs(post.node.date).format('DD MMMM YYYY')}
-            </Date>
-          </Content>
-        </Wrapper>
-      </StyledLink>
+    <Link to={`/${post.node.slug}`}>
+      <Wrapper>
+        {post.node.featuredImage.node.sourceUrl ? (
+          <ImageNormal
+            src={post.node.featuredImage.node.sourceUrl}
+            circle={circle}
+          />
+        ) : (
+          <Image
+            image={getImage(
+              post.node.featuredImage.node.localFile.childImageSharp
+                .gatsbyImageData
+            )}
+            alt={post.node.featuredImage.node.altText}
+            circle={circle}
+          />
+        )}
+        <Content>
+          <div>
+            <Heading dangerouslySetInnerHTML={{ __html: post.node.title }} />
+            <Excerpt dangerouslySetInnerHTML={{ __html: post.node.excerpt }} />
+          </div>
+          <Date>
+            {/* {post.node.author.node.firstName} {post.node.author.node.lastName}{' '} */}
+            {/* &bull;  */}
+            {dayjs(post.node.date).format('DD MMMM YYYY')}
+          </Date>
+        </Content>
+      </Wrapper>
     </Link>
   );
 };

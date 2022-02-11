@@ -1,12 +1,12 @@
-import React from "react";
-import { Link, graphql } from "gatsby";
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
-import styled from "styled-components";
-import Container from "components/Container";
-import SEO from "components/SEO";
-import Section from "components/Section";
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
+import styled from 'styled-components';
+import Container from 'components/Container';
+import SEO from 'components/SEO';
+import Section from 'components/Section';
 // import { Post as IPost } from "types/types";
-import Posts from "components/Posts";
+import Posts from 'components/Posts';
 
 const WideBanner = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ const WideBanner = styled.div`
 
 const HowToContainer = styled.div`
   display: flex;
-  margin: 2rem 0;
+  margin: 2rem 1rem;
   background-color: ${({ theme }) => theme.primary};
   border-radius: 10px;
   &:hover {
@@ -31,6 +31,7 @@ const HowToContainer = styled.div`
     display: none !important;
   }
   ${({ theme }) => theme.mq.l} {
+    margin: 2rem 0;
     padding: 5rem;
     & div {
       display: inline-block !important;
@@ -60,12 +61,10 @@ const ClinicWrapper = styled.div`
   margin: 3rem 0;
 `;
 
-const ClinicImageWrapper = styled.div`
-  position: relative;
+const ClinicImage = styled(GatsbyImage)`
   width: 100%;
   height: 200px;
   border-radius: 10px;
-  overflow: hidden;
   background-color: white;
 `;
 
@@ -101,11 +100,17 @@ const CheckAvailability = styled.div`
   background-color: ${({ theme }) => theme.secondary};
   height: 200px;
   margin-bottom: 10rem;
-  background-image: url("https://images.pexels.com/photos/606506/pexels-photo-606506.jpeg?cs=srgb&dl=pexels-michael-fischer-606506.jpg&fm=jpg");
+  background-image: url('https://images.pexels.com/photos/606506/pexels-photo-606506.jpeg?cs=srgb&dl=pexels-michael-fischer-606506.jpg&fm=jpg');
   background-size: cover;
   background-position: center;
   border-radius: 10px;
   text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  ${({ theme }) => theme.mq.l} {
+    margin-left: 0;
+    margin-right: 0;
+  }
   & h2 {
     font-size: 200%;
     font-weight: bold;
@@ -117,13 +122,10 @@ const CheckAvailability = styled.div`
   }
 `;
 
-const posts = {
-  edges: [],
-};
-const clinics = [];
-
-const ClinicsPage = (props) => {
-  console.log(props);
+const ClinicsPage = ({ data }) => {
+  const clinics = data.allWpClinic.edges;
+  const posts = data.allWpPost.edges;
+  console.log(posts);
   let postIndex = 0;
   return (
     <Container full>
@@ -155,37 +157,38 @@ const ClinicsPage = (props) => {
         </Link>
       </Container>
       <Section full title="Kliniki konopne">
-        {clinics.edges.map((node, i) => {
+        {clinics.map((node, i) => {
           const clinic = node.node;
           return (
             <React.Fragment key={i}>
-              {i > 0 && i % 2 == 0 && (
+              {i > 0 && i % 2 == 0 && posts.length ? (
                 <Posts
                   isList={true}
                   posts={[
-                    posts.edges[postIndex++],
-                    posts.edges[postIndex++],
-                    posts.edges[postIndex++],
-                    posts.edges[postIndex],
+                    posts[postIndex++],
+                    posts[postIndex++],
+                    posts[postIndex++],
+                    posts[postIndex],
                   ]}
                 />
-              )}
+              ) : null}
               <ClinicWrapper>
-                <ClinicImageWrapper>
-                  {clinic.featuredImage && (
-                    <GatsbyImage
-                      image={getImage(clinic.image)}
-                      alt={clinic.title}
-                      objectFit="cover"
-                    />
-                  )}
-                </ClinicImageWrapper>
+                {clinic.featuredImage && (
+                  <ClinicImage
+                    image={getImage(
+                      clinic.featuredImage.node.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={clinic.title}
+                    style={{ height: 200 }}
+                  />
+                )}
                 <ClinicInfo>
                   <ClinicName>{clinic.title}</ClinicName>
                   <div>
                     <ClinicText
                       dangerouslySetInnerHTML={{
-                        __html: clinic.details.adres.replace(",", ",<br/>"),
+                        __html: clinic.details.adres.replace(',', ',<br/>'),
                       }}
                     />
                     <ClinicButton href={clinic.details.link}>
@@ -215,16 +218,16 @@ const ClinicsPage = (props) => {
 
 export const pageQuery = graphql`
   query {
-    clinics {
+    allWpClinic {
       edges {
         node {
           featuredImage {
-            childImageSharp {
-              gatsbyImageData(
-                width: 200
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
+            node {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
           }
           title
@@ -233,6 +236,37 @@ export const pageQuery = graphql`
             adres
             link
           }
+        }
+      }
+    }
+    allWpPost(
+      filter: {
+        categories: {
+          nodes: { elemMatch: { slug: { eq: "medyczna-marihuana" } } }
+        }
+      }
+    ) {
+      edges {
+        node {
+          author {
+            node {
+              firstName
+              lastName
+            }
+          }
+          title
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+          }
+          slug
+          excerpt
+          date
         }
       }
     }

@@ -1,3 +1,4 @@
+import React from 'react';
 import Box from 'components/Box';
 import PostSmall from 'components/Post';
 import { Post } from 'types/types';

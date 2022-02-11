@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
+import { Link } from 'gatsby';
 
 interface Props {
   children: ReactNode;
@@ -37,10 +37,8 @@ const Wrapper = styled.div`
 `;
 
 const Category = (props: Props) => (
-  <Link href={`/category/${props.slug}`} passHref>
-    <StyledLink>
-      <Wrapper {...props} />
-    </StyledLink>
+  <Link to={`/category/${props.slug}`}>
+    <Wrapper {...props} />
   </Link>
 );
 

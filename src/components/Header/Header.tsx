@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState } from 'react';
+import { StaticImage } from 'gatsby-plugin-image';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import Hamburger from './Hamburger';
 import Menu from './Menu';
@@ -190,30 +190,35 @@ const CheckBox = styled.input`
   }
 `;
 
-const Header = ({
-  categories,
-  theme,
-  setTheme,
-}: {
-  categories: ICategory[];
-  theme: string;
-  setTheme: any;
-}) => {
+const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
   const [isMenuOpen, setMenuState] = useState(false);
+  const { categories } = useStaticQuery(graphql`
+    query {
+      categories: allWpCategory(
+        sort: { fields: count, order: DESC }
+        filter: { slug: { nin: ["youtube", "polska"] } }
+        limit: 6
+      ) {
+        nodes {
+          name
+          slug
+          uri
+          count
+        }
+      }
+    }
+  `);
 
   return (
     <Wrapper>
       <InnerWrapper>
         <div style={{ display: 'flex' }}>
-          <Link href="/">
+          <Link to="/">
             <a>
               <Logo>
-                <Image
-                  src="v1627901714/logo/logo.png?_i=AA"
+                <StaticImage
+                  src="../../assets/images/logo.png"
                   alt="WeedWeek"
-                  layout="fill"
-                  sizes="144px"
-                  priority
                 />
               </Logo>
             </a>
@@ -230,19 +235,15 @@ const Header = ({
           </CheckBoxWrapper>
         </div>
         <Categories>
-          <Link href={`/clinics`} passHref>
+          <Link to={`/clinics`}>
             <Category>Kliniki Konopne</Category>
           </Link>
-          {categories.map((category, i) =>
-            category.node.slug !== 'bez-kategorii' && i !== 0 ? (
-              <Link
-                key={category.node.slug}
-                href={`/category/${category.node.slug}`}
-                passHref
-              >
-                <Category>{category.node.name}</Category>
+          {categories.nodes.map((category, i) =>
+            category.slug !== 'bez-kategorii' && i !== 0 ? (
+              <Link key={category.slug} to={`/category/${category.slug}`}>
+                <Category>{category.name}</Category>
               </Link>
-            ) : null,
+            ) : null
           )}
         </Categories>
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -257,19 +258,15 @@ const Header = ({
         />
       </InnerWrapper>
       <CategoriesMobile>
-        <Link href={`/clinics`} passHref>
+        <Link to={`/clinics`}>
           <Category>Kliniki Konopne</Category>
         </Link>
-        {categories.map((category) =>
-          category.node.slug !== 'bez-kategorii' ? (
-            <Link
-              key={category.node.slug}
-              href={`/category/${category.node.slug}`}
-              passHref
-            >
-              <Category>{category.node.name}</Category>
+        {categories.nodes.map((category) =>
+          category.slug !== 'bez-kategorii' ? (
+            <Link key={category.slug} to={`/category/${category.slug}`}>
+              <Category>{category.name}</Category>
             </Link>
-          ) : null,
+          ) : null
         )}
       </CategoriesMobile>
     </Wrapper>
