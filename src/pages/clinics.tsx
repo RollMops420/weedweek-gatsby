@@ -55,7 +55,8 @@ const ClinicWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   ${({ theme }) => theme.mq.l} {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: ${({ secondary }: { secondary?: boolean }) =>
+      secondary ? '1fr' : '1fr 4fr'};
   }
   gap: 2rem;
   margin: 3rem 0;
@@ -63,7 +64,7 @@ const ClinicWrapper = styled.div`
 
 const ClinicImage = styled(GatsbyImage)`
   width: 100%;
-  height: 200px;
+  height: 150px;
   border-radius: 10px;
   background-color: white;
 `;
@@ -122,10 +123,28 @@ const CheckAvailability = styled.div`
   }
 `;
 
+const ClinicsWide = styled.div`
+  display: grid;
+  gap: 2rem;
+  ${({ theme }) => theme.mq.l} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+const RecommendedClinics = styled.div`
+  border: 2px solid ${({ theme }) => theme.primary};
+  border-radius: 10px;
+  padding: 5px;
+`;
+
+const Recommended = styled.h3`
+  color: ${({ theme }) => theme.primary};
+  margin: 0;
+`;
+
 const ClinicsPage = ({ data }) => {
   const clinics = data.allWpClinic.edges;
   const posts = data.allWpPost.edges;
-  console.log(posts);
   let postIndex = 0;
   return (
     <Container full>
@@ -156,8 +175,43 @@ const ClinicsPage = ({ data }) => {
           </HowToContainer>
         </Link>
       </Container>
-      <Section full title="Kliniki konopne">
-        {clinics.map((node, i) => {
+      <Section full>
+        <RecommendedClinics>
+          <Recommended>Polecane kliniki</Recommended>
+          <ClinicsWide>
+            {clinics.slice(0, 4).map((node, i) => {
+              const clinic = node.node;
+              return (
+                <ClinicWrapper key={i} secondary>
+                  {clinic.featuredImage && (
+                    <ClinicImage
+                      image={getImage(
+                        clinic.featuredImage.node.localFile.childImageSharp
+                          .gatsbyImageData
+                      )}
+                      alt={clinic.title}
+                      style={{ height: 200 }}
+                    />
+                  )}
+                  <ClinicInfo>
+                    <ClinicName>{clinic.title}</ClinicName>
+                    <div>
+                      <ClinicText
+                        dangerouslySetInnerHTML={{
+                          __html: clinic.details.adres.replace(',', ',<br/>'),
+                        }}
+                      />
+                      <ClinicButton href={clinic.details.link}>
+                        Umów wizytę
+                      </ClinicButton>
+                    </div>
+                  </ClinicInfo>
+                </ClinicWrapper>
+              );
+            })}
+          </ClinicsWide>
+        </RecommendedClinics>
+        {clinics.slice(4, 999).map((node, i) => {
           const clinic = node.node;
           return (
             <React.Fragment key={i}>
