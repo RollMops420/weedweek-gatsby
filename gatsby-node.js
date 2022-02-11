@@ -31,7 +31,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const categoryTemplate = path.resolve(`./src/templates/category.tsx`);
 
   allCategories.forEach((category) => {
-    console.log('cat', category);
     createPage({
       path: category.uri,
       component: slash(categoryTemplate),

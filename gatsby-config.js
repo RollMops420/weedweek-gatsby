@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        url: 'https://admin.weedweek.pl/graphql/',
+        url: process.env.WPGRAPHQL_URL || 'https://admin.weedweek.pl/graphql/',
         schema: {
           perPage: 100, // currently set to 100
           requestConcurrency: 15, // currently set to 15
