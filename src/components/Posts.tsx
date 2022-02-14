@@ -53,6 +53,9 @@ const PostWrapper = styled.article`
 const ImageWrapper = styled.div`
   position: relative;
   border-radius: 10px;
+  & img {
+    border-radius: 10px;
+  }
   height: 150px;
   overflow: hidden;
 `;

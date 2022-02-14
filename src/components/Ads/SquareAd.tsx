@@ -8,6 +8,9 @@ const Wrapper = styled.div`
   padding-bottom: 100%;
   overflow: hidden;
   position: relative;
+  & img {
+    border-radius: 10px;
+  }
   /* background-color: yellow; */
   &:hover {
     cursor: pointer;

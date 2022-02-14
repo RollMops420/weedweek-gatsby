@@ -42,12 +42,29 @@ const HowToContainer = styled.div`
 const HowTo = styled.h1`
   text-transform: uppercase;
   text-align: center;
+  font-size: 22px;
+  flex: 1;
   ${({ theme }) => theme.mq.l} {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     transform: translateX(64px);
+  }
+`;
+
+const Clinics = styled.div`
+  display: flex;
+  grid-gap: 20px;
+  overflow-x: auto;
+  ${({ theme }) => theme.mq.m} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+    overflow-x: none;
+  }
+  ${({ theme }) => theme.mq.l} {
+    grid-template-columns: repeat(4, 1fr);
+    overflow-x: none;
   }
 `;
 
@@ -60,6 +77,7 @@ const ClinicWrapper = styled.div`
   }
   gap: 2rem;
   margin: 3rem 0;
+  min-width: 300px;
 `;
 
 const ClinicImage = styled(GatsbyImage)`
@@ -86,7 +104,7 @@ const ClinicText = styled.p``;
 
 const ClinicButton = styled.a`
   padding: 10px 15px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.secondary};
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
@@ -124,21 +142,31 @@ const CheckAvailability = styled.div`
 `;
 
 const ClinicsWide = styled.div`
-  display: grid;
-  gap: 2rem;
+  display: flex;
+  grid-gap: 20px;
+  overflow-x: auto;
+  ${({ theme }) => theme.mq.m} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+    overflow-x: none;
+  }
   ${({ theme }) => theme.mq.l} {
     grid-template-columns: repeat(4, 1fr);
+    overflow-x: none;
   }
 `;
 
 const RecommendedClinics = styled.div`
-  border: 2px solid ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.primary};
   border-radius: 10px;
-  padding: 5px;
+  padding: 10px 5px;
 `;
 
 const Recommended = styled.h3`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text};
+  font-weight: 700;
+  font-size: 22px;
   margin: 0;
 `;
 
@@ -146,6 +174,8 @@ const ClinicsPage = ({ data }) => {
   const clinics = data.allWpClinic.edges;
   const posts = data.allWpPost.edges;
   let postIndex = 0;
+
+  const firstClinic = clinics[0].node;
   return (
     <Container full>
       <SEO
@@ -163,6 +193,33 @@ const ClinicsPage = ({ data }) => {
       />
       <Container>
         {/* <WideBanner>Banner</WideBanner> */}
+        <Section>
+          <ClinicWrapper secondary>
+            {firstClinic.featuredImage && (
+              <ClinicImage
+                image={getImage(
+                  firstClinic.featuredImage.node.localFile.childImageSharp
+                    .gatsbyImageData
+                )}
+                alt={firstClinic.title}
+                style={{ height: 200 }}
+              />
+            )}
+            <ClinicInfo>
+              <ClinicName>{firstClinic.title}</ClinicName>
+              <div>
+                <ClinicText
+                  dangerouslySetInnerHTML={{
+                    __html: firstClinic.details.adres.replace(',', ',<br/>'),
+                  }}
+                />
+                <ClinicButton href={firstClinic.details.link}>
+                  ✅ Umów wizytę
+                </ClinicButton>
+              </div>
+            </ClinicInfo>
+          </ClinicWrapper>
+        </Section>
         <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
           <HowToContainer>
             <HowTo>Jak uzyskać receptę?</HowTo>
@@ -177,12 +234,49 @@ const ClinicsPage = ({ data }) => {
       </Container>
       <Section full>
         <RecommendedClinics>
-          <Recommended>Polecane kliniki</Recommended>
-          <ClinicsWide>
-            {clinics.slice(0, 4).map((node, i) => {
-              const clinic = node.node;
-              return (
-                <ClinicWrapper key={i} secondary>
+          <Recommended>Wyróżnione kliniki</Recommended>
+          {clinics.slice(1, 5).map((node, i) => {
+            const clinic = node.node;
+            return (
+              <ClinicWrapper key={i} secondary>
+                {clinic.featuredImage && (
+                  <ClinicImage
+                    image={getImage(
+                      clinic.featuredImage.node.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={clinic.title}
+                    style={{ height: 200 }}
+                  />
+                )}
+                <ClinicInfo>
+                  <ClinicName>{clinic.title}</ClinicName>
+                  <div>
+                    <ClinicText
+                      dangerouslySetInnerHTML={{
+                        __html: clinic.details.adres.replace(',', ',<br/>'),
+                      }}
+                    />
+                    <ClinicButton href={clinic.details.link}>
+                      ✅ Umów wizytę
+                    </ClinicButton>
+                  </div>
+                </ClinicInfo>
+              </ClinicWrapper>
+            );
+          })}
+        </RecommendedClinics>
+      </Section>
+      <div style={{ marginTop: 40, marginLeft: 10 }}>
+        <Posts posts={posts} />
+      </div>
+      <Section>
+        <ClinicsWide>
+          {clinics.slice(6, 999).map((node, i) => {
+            const clinic = node.node;
+            return (
+              <React.Fragment key={i}>
+                <ClinicWrapper>
                   {clinic.featuredImage && (
                     <ClinicImage
                       image={getImage(
@@ -207,54 +301,14 @@ const ClinicsPage = ({ data }) => {
                     </div>
                   </ClinicInfo>
                 </ClinicWrapper>
-              );
-            })}
-          </ClinicsWide>
-        </RecommendedClinics>
-        {clinics.slice(4, 999).map((node, i) => {
-          const clinic = node.node;
-          return (
-            <React.Fragment key={i}>
-              {i > 0 && i % 2 == 0 && posts.length ? (
-                <Posts
-                  isList={true}
-                  posts={[
-                    posts[postIndex++],
-                    posts[postIndex++],
-                    posts[postIndex++],
-                    posts[postIndex],
-                  ]}
-                />
-              ) : null}
-              <ClinicWrapper>
-                {clinic.featuredImage && (
-                  <ClinicImage
-                    image={getImage(
-                      clinic.featuredImage.node.localFile.childImageSharp
-                        .gatsbyImageData
-                    )}
-                    alt={clinic.title}
-                    style={{ height: 200 }}
-                  />
-                )}
-                <ClinicInfo>
-                  <ClinicName>{clinic.title}</ClinicName>
-                  <div>
-                    <ClinicText
-                      dangerouslySetInnerHTML={{
-                        __html: clinic.details.adres.replace(',', ',<br/>'),
-                      }}
-                    />
-                    <ClinicButton href={clinic.details.link}>
-                      Umów wizytę
-                    </ClinicButton>
-                  </div>
-                </ClinicInfo>
-              </ClinicWrapper>
-            </React.Fragment>
-          );
-        })}
+              </React.Fragment>
+            );
+          })}
+        </ClinicsWide>
       </Section>
+      <div style={{ marginTop: 20, marginLeft: 10, marginBottom: 10 }}>
+        <Posts posts={posts.slice(0).reverse()} />
+      </div>
       <Container>
         <a
           href="https://www.gdziepolek.pl/wyszukiwanie?q=Cannabis"

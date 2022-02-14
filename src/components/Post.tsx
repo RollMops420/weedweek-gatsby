@@ -41,6 +41,9 @@ const Image = styled(GatsbyImage)`
   width: 35%;
   height: 100px;
   border-radius: 8px;
+  & img {
+    border-radius: 8px;
+  }
   align-self: flex-start;
   ${({ circle }: { circle: boolean }) =>
     circle &&
