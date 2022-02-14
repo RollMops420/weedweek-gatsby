@@ -20,6 +20,9 @@ const Wrapper = styled.div`
 const Image = styled(GatsbyImage)`
   width: 100%;
   border-radius: 10px;
+  & img {
+    border-radius: 10px;
+  }
 `;
 
 const Letter = styled.span`
