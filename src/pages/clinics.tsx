@@ -263,7 +263,9 @@ const ClinicsPage = ({ data }) => {
                     <div>
                       <ClinicText
                         dangerouslySetInnerHTML={{
-                          __html: clinic.details.adres.replace(',', ',<br/>'),
+                          __html:
+                            clinic.deetails.adres &&
+                            clinic.details.adres?.replace(',', ',<br/>'),
                         }}
                       />
                       <ClinicsButtons>
