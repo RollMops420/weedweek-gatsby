@@ -264,7 +264,7 @@ const ClinicsPage = ({ data }) => {
                       <ClinicText
                         dangerouslySetInnerHTML={{
                           __html:
-                            clinic.deetails.adres &&
+                            clinic.details.adres &&
                             clinic.details.adres?.replace(',', ',<br/>'),
                         }}
                       />
@@ -309,7 +309,9 @@ const ClinicsPage = ({ data }) => {
                     <div>
                       <ClinicText
                         dangerouslySetInnerHTML={{
-                          __html: clinic.details.adres.replace(',', ',<br/>'),
+                          __html:
+                            clinic.details.adres &&
+                            clinic.details.adres?.replace(',', ',<br/>'),
                         }}
                       />
                       <ClinicButton href={clinic.details.link}>
