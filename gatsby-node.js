@@ -27,8 +27,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
+  const indexTemplate = path.resolve(`./src/templates/index.js`);
   const postTemplate = path.resolve(`./src/templates/post.tsx`);
   const categoryTemplate = path.resolve(`./src/templates/category.tsx`);
+
+  createPage({
+    path: '/',
+    component: slash(indexTemplate),
+  });
 
   allCategories.forEach((category) => {
     createPage({
@@ -164,4 +170,3 @@ exports.createResolvers = ({ createResolvers, schema }) =>
       },
     },
   });
-
