@@ -76,14 +76,18 @@ const ClinicWrapper = styled.div`
       secondary ? '1fr' : '1fr 4fr'};
   }
   gap: 2rem;
-  margin: 3rem 0;
+  margin: 1rem 0;
   min-width: 300px;
 `;
 
 const ClinicImage = styled(GatsbyImage)`
   width: 100%;
-  height: 150px;
+  height: 100%;
   border-radius: 10px;
+  min-width: 150px;
+  & img {
+    border-radius: 10px;
+  }
   background-color: white;
 `;
 
@@ -109,7 +113,9 @@ const ClinicButton = styled.a`
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 5px;
-  font-size: 125%;
+  ${({ theme }) => theme.mq.l} {
+    font-size: 125%;
+  }
 `;
 
 const CheckAvailability = styled.div`
@@ -141,10 +147,21 @@ const CheckAvailability = styled.div`
   }
 `;
 
+const ClinicsButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
 const ClinicsWide = styled.div`
   display: flex;
   grid-gap: 20px;
   overflow-x: auto;
+  ${({ list }): { list?: boolean } =>
+    list &&
+    `
+      display: flex;
+      flex-direction: column;
+    `};
   ${({ theme }) => theme.mq.m} {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -152,7 +169,7 @@ const ClinicsWide = styled.div`
     overflow-x: none;
   }
   ${({ theme }) => theme.mq.l} {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     overflow-x: none;
   }
 `;
@@ -168,6 +185,13 @@ const Recommended = styled.h3`
   font-weight: 700;
   font-size: 22px;
   margin: 0;
+`;
+
+const OurClinic = styled.div`
+  margin: 0 auto;
+  ${({ theme }) => theme.mq.l} {
+    width: 50%;
+  }
 `;
 
 const ClinicsPage = ({ data }) => {
@@ -191,35 +215,19 @@ const ClinicsPage = ({ data }) => {
         // ogType={post.seo.opengraphType}
         ogUrl={`https://weedweek.pl/clinics`}
       />
-      <Container>
+      <Container top>
         {/* <WideBanner>Banner</WideBanner> */}
-        <Section>
-          <ClinicWrapper secondary>
-            {firstClinic.featuredImage && (
-              <ClinicImage
-                image={getImage(
-                  firstClinic.featuredImage.node.localFile.childImageSharp
-                    .gatsbyImageData
-                )}
-                alt={firstClinic.title}
-                style={{ height: 200 }}
-              />
-            )}
-            <ClinicInfo>
-              <ClinicName>{firstClinic.title}</ClinicName>
-              <div>
-                <ClinicText
-                  dangerouslySetInnerHTML={{
-                    __html: firstClinic.details.adres.replace(',', ',<br/>'),
-                  }}
-                />
-                <ClinicButton href={firstClinic.details.link}>
-                  ✅ Umów wizytę
-                </ClinicButton>
-              </div>
-            </ClinicInfo>
-          </ClinicWrapper>
-        </Section>
+        <OurClinic>
+          {firstClinic.featuredImage && (
+            <ClinicImage
+              image={getImage(
+                firstClinic.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              )}
+              alt={firstClinic.title}
+            />
+          )}
+        </OurClinic>
         <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
           <HowToContainer>
             <HowTo>Jak uzyskać receptę?</HowTo>
@@ -235,44 +243,51 @@ const ClinicsPage = ({ data }) => {
       <Section full>
         <RecommendedClinics>
           <Recommended>Wyróżnione kliniki</Recommended>
-          {clinics.slice(1, 5).map((node, i) => {
-            const clinic = node.node;
-            return (
-              <ClinicWrapper key={i} secondary>
-                {clinic.featuredImage && (
-                  <ClinicImage
-                    image={getImage(
-                      clinic.featuredImage.node.localFile.childImageSharp
-                        .gatsbyImageData
-                    )}
-                    alt={clinic.title}
-                    style={{ height: 200 }}
-                  />
-                )}
-                <ClinicInfo>
-                  <ClinicName>{clinic.title}</ClinicName>
-                  <div>
-                    <ClinicText
-                      dangerouslySetInnerHTML={{
-                        __html: clinic.details.adres.replace(',', ',<br/>'),
-                      }}
+          <ClinicsWide list>
+            {clinics.slice(1, 4).map((node, i) => {
+              const clinic = node.node;
+              return (
+                <ClinicWrapper key={i} secondary>
+                  {clinic.featuredImage && (
+                    <ClinicImage
+                      image={getImage(
+                        clinic.featuredImage.node.localFile.childImageSharp
+                          .gatsbyImageData
+                      )}
+                      alt={clinic.title}
+                      style={{ height: 200 }}
                     />
-                    <ClinicButton href={clinic.details.link}>
-                      ✅ Umów wizytę
-                    </ClinicButton>
-                  </div>
-                </ClinicInfo>
-              </ClinicWrapper>
-            );
-          })}
+                  )}
+                  <ClinicInfo>
+                    <ClinicName>{clinic.title}</ClinicName>
+                    <div>
+                      <ClinicText
+                        dangerouslySetInnerHTML={{
+                          __html: clinic.details.adres.replace(',', ',<br/>'),
+                        }}
+                      />
+                      <ClinicsButtons>
+                        <ClinicButton href={clinic.details.link}>
+                          Umów wizytę
+                        </ClinicButton>
+                        <ClinicButton href={clinic.details.link}>
+                          ✅ E-Wizyta
+                        </ClinicButton>
+                      </ClinicsButtons>
+                    </div>
+                  </ClinicInfo>
+                </ClinicWrapper>
+              );
+            })}
+          </ClinicsWide>
         </RecommendedClinics>
       </Section>
       <div style={{ marginTop: 40, marginLeft: 10 }}>
         <Posts posts={posts} />
       </div>
-      <Section>
+      <Section full>
         <ClinicsWide>
-          {clinics.slice(6, 999).map((node, i) => {
+          {clinics.slice(5, 999).map((node, i) => {
             const clinic = node.node;
             return (
               <React.Fragment key={i}>
@@ -284,7 +299,7 @@ const ClinicsPage = ({ data }) => {
                           .gatsbyImageData
                       )}
                       alt={clinic.title}
-                      style={{ height: 200 }}
+                      style={{ height: 150 }}
                     />
                   )}
                   <ClinicInfo>
