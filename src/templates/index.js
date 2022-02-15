@@ -247,7 +247,7 @@ const HomePage = ({ data }) => {
 
 export const pageQuery = graphql`
   query {
-    posts: allWpPost(limit: 10) {
+    posts: allWpPost(limit: 10, sort: { order: DESC, fields: date }) {
       edges {
         node {
           excerpt
@@ -352,6 +352,7 @@ export const pageQuery = graphql`
           nodes: { elemMatch: { slug: { eq: "medyczna-marihuana" } } }
         }
       }
+      sort: { order: DESC, fields: date }
     ) {
       edges {
         node {
@@ -382,6 +383,7 @@ export const pageQuery = graphql`
           nodes: { elemMatch: { slug: { eq: "nasiona-marihuany" } } }
         }
       }
+      sort: { order: DESC, fields: date }
     ) {
       edges {
         node {
@@ -410,6 +412,7 @@ export const pageQuery = graphql`
       filter: {
         categories: { nodes: { elemMatch: { slug: { eq: "waporyzacja" } } } }
       }
+      sort: { order: DESC, fields: date }
     ) {
       edges {
         node {

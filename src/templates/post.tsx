@@ -878,6 +878,7 @@ export const pageQuery = graphql`
       filter: {
         categories: { nodes: { elemMatch: { databaseId: { eq: 1702 } } } }
       }
+      sort: { order: DESC, fields: date }
     ) {
       edges {
         node {
@@ -902,7 +903,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    newests: allWpPost(limit: 8) {
+    newests: allWpPost(limit: 8, sort: { order: DESC, fields: date }) {
       edges {
         node {
           excerpt
