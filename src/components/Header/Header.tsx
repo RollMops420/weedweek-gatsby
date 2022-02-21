@@ -235,7 +235,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
           </CheckBoxWrapper>
         </div>
         <Categories>
-          <Category to={`/clinics`}>Kliniki Konopne</Category>
+          <Category to={`/klinikikonopne`}>Kliniki Konopne</Category>
           {categories.nodes.map((category, i) =>
             category.slug !== 'bez-kategorii' && i !== 0 ? (
               <Category key={category.slug} to={`/category/${category.slug}`}>
@@ -256,7 +256,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
         />
       </InnerWrapper>
       <CategoriesMobile>
-        <Category to={`/clinics`}>Kliniki Konopne</Category>
+        <Category to={`/klinikikonopne`}>Kliniki Konopne</Category>
         {categories.nodes.map((category) =>
           category.slug !== 'bez-kategorii' ? (
             <Category key={category.slug} to={`/category/${category.slug}`}>
