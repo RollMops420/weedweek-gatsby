@@ -113,6 +113,9 @@ const ClinicButton = styled.a`
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${({ theme }) => theme.mq.l} {
     font-size: 125%;
   }

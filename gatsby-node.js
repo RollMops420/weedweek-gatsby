@@ -28,12 +28,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const indexTemplate = path.resolve(`./src/templates/index.js`);
+  const clinicsTemplate = path.resolve(`./src/templates/clinics.tsx`);
   const postTemplate = path.resolve(`./src/templates/post.tsx`);
   const categoryTemplate = path.resolve(`./src/templates/category.tsx`);
 
   createPage({
     path: '/',
     component: slash(indexTemplate),
+  });
+
+  createPage({
+    path: '/clinics',
+    component: slash(clinicsTemplate),
   });
 
   allCategories.forEach((category) => {
