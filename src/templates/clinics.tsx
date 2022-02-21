@@ -216,7 +216,7 @@ const ClinicsPage = ({ data }) => {
         ogTitle="Kliniki Konopne - WeedWeek"
         ogDesc="Najbardziej polecane Kliniki Konopne w polsce"
         // ogType={post.seo.opengraphType}
-        ogUrl={`https://weedweek.pl/klinikikonopne`}
+        ogUrl={`https://weedweek.pl/kliniki-konopne`}
       />
       <Container top>
         {/* <WideBanner>Banner</WideBanner> */}

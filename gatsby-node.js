@@ -38,7 +38,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 
   createPage({
-    path: '/klinikikonopne',
+    path: '/kliniki-konopne',
     component: slash(clinicsTemplate),
   });
 
