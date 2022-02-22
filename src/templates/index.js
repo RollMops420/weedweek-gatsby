@@ -350,6 +350,7 @@ export const pageQuery = graphql`
         }
       }
       sort: { order: DESC, fields: date }
+      limit: 8
     ) {
       edges {
         node {
