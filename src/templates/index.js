@@ -211,23 +211,20 @@ const HomePage = ({ data }) => {
             />
           )}
         </AdWrapper> */}
-        {/* <Section full title="Medyczna Marihuana">
+        {console.log(medyczna)}
+        <Section full title="Medyczna Marihuana">
           <Posts posts={medyczna.edges} />
-        </Section> */}
-        {/* <Section small title="Wszystkie wpisy">
+        </Section>
+        <Section small title="Wszystkie wpisy">
           <div>
-            {articles.length ? (
-              <PostsDesc posts={articles} />
-            ) : (
-              <PostsDesc posts={posts.edges} />
-            )}
+            <PostsDesc posts={posts.edges.slice(8, 50)} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {waporyzacja.edges.map((post, index) => (
               <PostSmall post={post} key={index} circle />
             ))}
           </div>
-        </Section> */}
+        </Section>
       </Container>
       {/* <PopupAd
         banners={[
@@ -247,7 +244,7 @@ const HomePage = ({ data }) => {
 
 export const pageQuery = graphql`
   query {
-    posts: allWpPost(limit: 10, sort: { order: DESC, fields: date }) {
+    posts: allWpPost(limit: 50, sort: { order: DESC, fields: date }) {
       edges {
         node {
           excerpt

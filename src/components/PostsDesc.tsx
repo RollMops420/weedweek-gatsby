@@ -66,14 +66,14 @@ const PostsDesc = ({ posts }: Props) => {
         <Link key={post.node.slug} to={`/${post.node.slug}`}>
           <a>
             <PostWrapper>
-              <ImageWrapper>
-                <GatsbyImage
-                  image={getImage(
-                    post.node.featuredImage.node.localFile.childImageSharp
-                      .gatsbyImageData
-                  )}
-                />
-              </ImageWrapper>
+              {/* <ImageWrapper> */}
+              <GatsbyImage
+                image={getImage(
+                  post.node.featuredImage.node.localFile.childImageSharp
+                    .gatsbyImageData
+                )}
+              />
+              {/* </ImageWrapper> */}
               <div>
                 <Heading>{post.node.title}</Heading>
                 <Desc
