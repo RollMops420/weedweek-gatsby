@@ -444,6 +444,11 @@ const Center = styled.div`
   margin-top: 200px;
 `;
 
+const ShopLink = styled.a`
+  display: inline-block;
+  color: ${({theme}) => theme.link};
+`
+
 const authorization =
   'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4ud2VlZHdlZWsucGwiLCJpYXQiOjE2NDIyNTQ0OTQsIm5iZiI6MTY0MjI1NDQ5NCwiZXhwIjoxNjQyODU5Mjk0LCJkYXRhIjp7InVzZXIiOnsiaWQiOjEsImRldmljZSI6IiIsInBhc3MiOiIzZThkNmRmMTlmYTdlMDM0MzA1NzY0NGUxZGE5ZDMwMiJ9fX0.1XrzQDDxmDV0CVZihLWkrnlRCegVNL4oygZKScgKIO8';
 
@@ -670,23 +675,24 @@ const PostPage = ({ data }: Props) => {
                       ))
                     : null}
                   <ShopWrapper>
-                    <div style={{ borderRadius: 10 }}>
+                    <div style={{ borderRadius: 10, padding: '0 2px' }}>
                       <StaticImage
-                        width={64}
-                        height={51}
-                        src="../assets/images/papuga.webp"
+                        width={60}
+                        height={67}
+                        src="../assets/images/panpestka.pl"
                         alt=""
                       />
                     </div>
                     <ShopDesc>
                       <h4>Kącik Ornitologiczny</h4>
-                      <ShopButton
+                      <span>Wspierany przez <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink></span>
+                      {/* <ShopButton
                         href="mailto:mops@rollmops.pl"
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                       >
                         Zostań partnerem
-                      </ShopButton>
+                      </ShopButton> */}
                     </ShopDesc>
                   </ShopWrapper>
                 </div>
@@ -747,21 +753,22 @@ const PostPage = ({ data }: Props) => {
                 <ShopWrapper>
                   <div style={{ borderRadius: 10 }}>
                     <StaticImage
-                      width={64}
-                      height={51}
-                      src="../assets/images/papuga.webp"
+                      width={60}
+                      height={67}
+                      src="../assets/images/panpestka.png"
                       alt=""
                     />
                   </div>
                   <ShopDesc>
                     <h4>Kącik Ornitologiczny</h4>
-                    <ShopButton
+                      <span>Wspierany przez <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink></span>
+                    {/* <ShopButton
                       href="mailto:mops@rollmops.pl"
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                     >
                       Zostań partnerem
-                    </ShopButton>
+                    </ShopButton> */}
                   </ShopDesc>
                 </ShopWrapper>
               </div>

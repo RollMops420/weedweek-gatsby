@@ -45,6 +45,7 @@ export const darkTheme = {
   box: '#222',
   glassFrom: 'rgba(30, 116, 76, .7)',
   glassTo: 'rgba(40, 128, 62, .3)',
+  link: '#87fc8b',
   ...themeConst,
 };
 
@@ -63,6 +64,7 @@ export const lightTheme = {
   box: '#fff',
   glassFrom: 'rgba(60, 232, 152, .9)',
   glassTo: 'rgba(48, 186, 122, .4)',
+  link: '#039708',
   ...themeConst,
 };
 

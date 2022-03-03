@@ -60,6 +60,11 @@ const ShopButton = styled.a`
   }
 `;
 
+const ShopLink = styled.a`
+  display: inline-block;
+  color: ${({theme}) => theme.link};
+`
+
 const HomePage = ({ data }) => {
   const { posts, nasiona, products, adA, adC } = data;
   const popular = posts;
@@ -180,26 +185,26 @@ const HomePage = ({ data }) => {
         <ShopSection full title="Nasiona Marihuany">
           <ShopWrapper>
             <ShopImageWrapper>
-              <div style={{ backgroundColor: '#fff', borderRadius: 10 }}>
+              <div style={{ backgroundColor: '#fff', borderRadius: 10, padding: '0 2px' }}>
                 <StaticImage
-                  width={64}
-                  height={51}
-                  src="../assets/images/papuga.webp"
+                  width={60}
+                  height={67}
+                  src="../assets/images/panpestka.png"
                 />
               </div>
 
               <ShopDesc>
                 <h4>Kącik Ornitologiczny</h4>
-                <span>Masz Seedbank? Zostań partnerem działu</span>
+                <span>Wspierany przez <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink></span>
               </ShopDesc>
             </ShopImageWrapper>
-            <ShopButton
+            {/* <ShopButton
               href="mailto:mops@rollmops.pl"
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
               Zostań partnerem
-            </ShopButton>
+            </ShopButton> */}
           </ShopWrapper>
           <Posts posts={nasiona.edges.slice(0, 4)} />
         </ShopSection>
@@ -211,7 +216,6 @@ const HomePage = ({ data }) => {
             />
           )}
         </AdWrapper> */}
-        {console.log(medyczna)}
         <Section full title="Medyczna Marihuana">
           <Posts posts={medyczna.edges} />
         </Section>
