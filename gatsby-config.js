@@ -12,6 +12,9 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.WPGRAPHQL_URL || 'https://admin.weedweek.pl/graphql/',
+        production: {
+          allow404Images: true,
+        },
         schema: {
           perPage: 20, // currently set to 100
           requestConcurrency: 5, // currently set to 15
