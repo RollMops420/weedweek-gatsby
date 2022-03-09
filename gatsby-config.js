@@ -5,6 +5,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-root-import',
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-typescript',
     {
