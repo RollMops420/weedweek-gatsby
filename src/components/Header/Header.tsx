@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Hamburger from './Hamburger';
 import Menu from './Menu';
 import ShoppingSVG from '../../assets/icons/shopping-bag.svg';
-import CannabisLandSvg from '../../assets/icons/cannabisland.svg';
 import { ICategory } from 'types/types';
 
 const Wrapper = styled.div`
@@ -74,22 +73,6 @@ const IconWrapper = styled.div`
 const ShoppingIcon = styled(ShoppingSVG)`
   width: 21px;
   height: 21px;
-`;
-
-const CannabisLand = styled(CannabisLandSvg)`
-  width: 150px;
-  position: absolute;
-  top: 64px;
-  left: 20px;
-  z-index: 99;
-  opacity: 0.91;
-  ${({ theme }) => theme.mq.l} {
-    width: 175px;
-    position: absolute;
-    top: unset;
-    bottom: -27px;
-    left: 35px;
-  }
 `;
 
 const Categories = styled.div`
@@ -223,7 +206,6 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
               </Logo>
             </a>
           </Link>
-          <CannabisLand />
           <CheckBoxWrapper>
             <CheckBox
               id="checkbox"

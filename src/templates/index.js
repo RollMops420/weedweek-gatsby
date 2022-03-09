@@ -62,8 +62,8 @@ const ShopButton = styled.a`
 
 const ShopLink = styled.a`
   display: inline-block;
-  color: ${({theme}) => theme.link};
-`
+  color: ${({ theme }) => theme.link};
+`;
 
 const HomePage = ({ data }) => {
   const { posts, nasiona, products, adA, adC } = data;
@@ -138,15 +138,6 @@ const HomePage = ({ data }) => {
         <Section title="Najnowsze" small>
           <div>
             <Featured post={posts.edges[0]} />
-            <AdWrapper>
-              <WideAd
-                source={
-                  adA.featuredImage.node.localFile.childImageSharp
-                    .gatsbyImageData
-                }
-                href="https://cannabisland.pl/?utm_source=weedweek.pl&utm_medium=Banner&utm_campaign=cannabisland-promo"
-              />
-            </AdWrapper>
           </div>
           <div
             style={{
@@ -185,7 +176,13 @@ const HomePage = ({ data }) => {
         <ShopSection full title="Nasiona Marihuany">
           <ShopWrapper>
             <ShopImageWrapper>
-              <div style={{ backgroundColor: '#fff', borderRadius: 10, padding: '0 2px' }}>
+              <div
+                style={{
+                  backgroundColor: '#fff',
+                  borderRadius: 10,
+                  padding: '0 2px',
+                }}
+              >
                 <StaticImage
                   width={60}
                   height={67}
@@ -195,7 +192,10 @@ const HomePage = ({ data }) => {
 
               <ShopDesc>
                 <h4>Kącik Ornitologiczny</h4>
-                <span>Wspierany przez <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink></span>
+                <span>
+                  Wspierany przez{' '}
+                  <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink>
+                </span>
               </ShopDesc>
             </ShopImageWrapper>
             {/* <ShopButton

@@ -24,6 +24,7 @@ import PopupAd from 'components/Ads/PopupAd';
 import VideoPlayer from '../components/VideoPlayer';
 import Disqus from '../components/Disqus';
 import { graphql } from 'gatsby';
+import Products from 'components/Products';
 
 dayjs.locale('pl');
 
@@ -235,12 +236,14 @@ const RightWrapperMobile = styled.div`
 
 const RenderPost = ({
   post,
+  products,
   views,
   bannerVisible,
   adC,
   adE,
 }: {
   post: Post;
+  products: any;
   views: string | null;
   bannerVisible: number;
   adC: any;
@@ -329,31 +332,6 @@ const RenderPost = ({
         }}
       />
     )}
-    <AdWrapper>
-      <WideAd
-        source={
-          adC.featuredImage.node.localFile.childImageSharp.gatsbyImageData
-        }
-        href="https://cannabisland.pl/?utm_source=weedweek.pl&utm_medium=Banner&utm_campaign=cannabisland-promo"
-      />
-    </AdWrapper>
-    <Content>
-      <a
-        href="https://beesfund.com/wkrotce/cannabisland"
-        style={{
-          textAlign: 'center',
-          color: 'red',
-          textTransform: 'uppercase',
-          display: 'block',
-          margin: '0 auto',
-          fontWeight: 'bold',
-        }}
-      >
-        ZARABIAJ NA KONOPIACH
-        <br />
-        Zapisz się na alert inwestorski i zostań wspólnikiem Cannabisland
-      </a>
-    </Content>
     {post.content &&
       (post.content.includes('wp-image-789') ? (
         <>
@@ -407,6 +385,7 @@ const RenderPost = ({
               ),
             }}
           />
+          <Products products={products.edges} />
           {bannerVisible === 0 && adC.featuredImage && (
             <AdWrapper>
               <WideAd
@@ -446,14 +425,14 @@ const Center = styled.div`
 
 const ShopLink = styled.a`
   display: inline-block;
-  color: ${({theme}) => theme.link};
-`
+  color: ${({ theme }) => theme.link};
+`;
 
 const authorization =
   'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYWRtaW4ud2VlZHdlZWsucGwiLCJpYXQiOjE2NDIyNTQ0OTQsIm5iZiI6MTY0MjI1NDQ5NCwiZXhwIjoxNjQyODU5Mjk0LCJkYXRhIjp7InVzZXIiOnsiaWQiOjEsImRldmljZSI6IiIsInBhc3MiOiIzZThkNmRmMTlmYTdlMDM0MzA1NzY0NGUxZGE5ZDMwMiJ9fX0.1XrzQDDxmDV0CVZihLWkrnlRCegVNL4oygZKScgKIO8';
 
 const PostPage = ({ data }: Props) => {
-  const { adB, adC, adE, post, newests, nasiona } = data;
+  const { adB, adC, adE, post, newests, nasiona, products } = data;
   const related = post ? post.related_posts?.nodes : [];
   const [bannerVisible, setBanner] = useState(0);
   const [views, setViews] = useState(null);
@@ -639,6 +618,7 @@ const PostPage = ({ data }: Props) => {
         <div>
           <RenderPost
             post={post}
+            products={products}
             views={views}
             adC={adC}
             adE={adE}
@@ -679,13 +659,18 @@ const PostPage = ({ data }: Props) => {
                       <StaticImage
                         width={60}
                         height={67}
-                        src="../assets/images/panpestka.pl"
+                        src="../assets/images/panpestka.png"
                         alt=""
                       />
                     </div>
                     <ShopDesc>
                       <h4>Kącik Ornitologiczny</h4>
-                      <span>Wspierany przez <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink></span>
+                      <span>
+                        Wspierany przez{' '}
+                        <ShopLink href="https://panpestka.pl/">
+                          PanPestka.pl
+                        </ShopLink>
+                      </span>
                       {/* <ShopButton
                         href="mailto:mops@rollmops.pl"
                         target="_blank"
@@ -761,7 +746,12 @@ const PostPage = ({ data }: Props) => {
                   </div>
                   <ShopDesc>
                     <h4>Kącik Ornitologiczny</h4>
-                      <span>Wspierany przez <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink></span>
+                    <span>
+                      Wspierany przez{' '}
+                      <ShopLink href="https://panpestka.pl/">
+                        PanPestka.pl
+                      </ShopLink>
+                    </span>
                     {/* <ShopButton
                       href="mailto:mops@rollmops.pl"
                       target="_blank"
@@ -985,6 +975,33 @@ export const pageQuery = graphql`
       }
       ad_fields {
         link
+      }
+    }
+    products: allWpProduct {
+      edges {
+        node {
+          id
+          details {
+            price
+            review {
+              ... on WpPost {
+                id
+                slug
+              }
+            }
+            shop
+          }
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+          }
+          title
+        }
       }
     }
   }

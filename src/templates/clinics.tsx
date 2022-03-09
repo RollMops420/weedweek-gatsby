@@ -2,11 +2,13 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Container from 'components/Container';
 import SEO from 'components/SEO';
 import Section from 'components/Section';
 // import { Post as IPost } from "types/types";
 import Posts from 'components/Posts';
+import 'leaflet/dist/leaflet.css';
 
 const WideBanner = styled.div`
   width: 100%;
@@ -116,9 +118,6 @@ const ClinicButton = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${({ theme }) => theme.mq.l} {
-    font-size: 125%;
-  }
 `;
 
 const CheckAvailability = styled.div`
@@ -197,6 +196,46 @@ const OurClinic = styled.div`
   }
 `;
 
+const Content = styled.div`
+  /* margin-left: 200px; */
+  /* padding-left: 3rem; */
+`;
+
+const Sidebar = styled.div`
+  background-color: ${({ theme }) => theme.primary};
+  padding-top: 40px;
+  width: 200px;
+  height: 100vh;
+  position fixed;
+  top: 80px;
+  left: 0;
+  z-index: 0;
+`;
+
+const SidebarItem = styled.a`
+  display: flex;
+  padding: 2rem 0;
+  align-items: center;
+  justify-content: center;
+  &:first-of-type {
+    border-top: 1px solid ${({ theme }) => theme.secondary};
+  }
+  border-bottom: 1px solid ${({ theme }) => theme.secondary};
+  color: white;
+  text-transform: uppercase;
+`;
+
+const HowObtain = styled.span`
+  display: block;
+  color: red;
+  padding-bottom: 1rem;
+  font-weight: bold;
+`;
+
+const SidebarIcon = styled.div`
+  margin-right: 10px;
+`;
+
 const ClinicsPage = ({ data }) => {
   const clinics = data.allWpClinic.edges;
   const posts = data.allWpPost.edges;
@@ -218,8 +257,32 @@ const ClinicsPage = ({ data }) => {
         // ogType={post.seo.opengraphType}
         ogUrl={`https://weedweek.pl/kliniki-konopne`}
       />
-      <Container top>
-        {/* <WideBanner>Banner</WideBanner> */}
+      {/* <Sidebar>
+        <SidebarItem href="/">
+          Recepta
+        </SidebarItem>
+        <SidebarItem href="/">Polecane kliniki</SidebarItem>
+        <SidebarItem href="/">Dostępność</SidebarItem>
+      </Sidebar> */}
+      <Content style={{ padding: 20, borderRadius: 10, overflow: 'hidden' }}>
+        <Container>
+          <MapContainer
+            center={[52.061, 18.156]}
+            zoom={6}
+            style={{ width: 'auto', height: 400 }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[50.36515, 18.79046]}>
+              <Popup>CLINICANNA</Popup>
+            </Marker>
+          </MapContainer>
+        </Container>
+      </Content>
+      <Content>
+        {/* <Container top>
         <OurClinic>
           {firstClinic.featuredImage && (
             <ClinicImage
@@ -231,21 +294,14 @@ const ClinicsPage = ({ data }) => {
             />
           )}
         </OurClinic>
-        <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
-          <HowToContainer>
-            <HowTo>Jak uzyskać receptę?</HowTo>
-            <StaticImage
-              src="../assets/images/natural.png"
-              alt="Natural"
-              width={128}
-              height={128}
-            />
-          </HowToContainer>
-        </Link>
-      </Container>
-      <Section full>
-        <RecommendedClinics>
-          <Recommended>Wyróżnione kliniki</Recommended>
+      </Container> */}
+
+        <Section full>
+          <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
+            <HowObtain>Dowiedz się jak uzyskać receptę</HowObtain>
+          </Link>
+          {/* <RecommendedClinics> */}
+          <Recommended>Polecane kliniki</Recommended>
           <ClinicsWide list>
             {clinics.slice(1, 4).map((node, i) => {
               const clinic = node.node;
@@ -285,18 +341,16 @@ const ClinicsPage = ({ data }) => {
               );
             })}
           </ClinicsWide>
-        </RecommendedClinics>
-      </Section>
-      <div style={{ marginTop: 40, marginLeft: 10 }}>
-        <Posts posts={posts} />
-      </div>
-      <Section full>
-        <ClinicsWide>
-          {clinics.slice(5, 999).map((node, i) => {
-            const clinic = node.node;
-            return (
-              <React.Fragment key={i}>
-                <ClinicWrapper>
+        </Section>
+        <Container>
+          <Posts posts={posts.slice(0, 4)} />
+        </Container>
+        <Section full>
+          <ClinicsWide list>
+            {clinics.slice(5, 999).map((node, i) => {
+              const clinic = node.node;
+              return (
+                <ClinicWrapper key={i} secondary>
                   {clinic.featuredImage && (
                     <ClinicImage
                       image={getImage(
@@ -304,7 +358,7 @@ const ClinicsPage = ({ data }) => {
                           .gatsbyImageData
                       )}
                       alt={clinic.title}
-                      style={{ height: 150 }}
+                      style={{ height: 200 }}
                     />
                   )}
                   <ClinicInfo>
@@ -317,31 +371,36 @@ const ClinicsPage = ({ data }) => {
                             clinic.details.adres?.replace(',', ',<br/>'),
                         }}
                       />
-                      <ClinicButton href={clinic.details.link}>
-                        Umów wizytę
-                      </ClinicButton>
+                      <ClinicsButtons>
+                        <ClinicButton href={clinic.details.link}>
+                          Umów wizytę
+                        </ClinicButton>
+                        {/* <ClinicButton href={clinic.details.link}>
+                          ✅ E-Wizyta
+                        </ClinicButton> */}
+                      </ClinicsButtons>
                     </div>
                   </ClinicInfo>
                 </ClinicWrapper>
-              </React.Fragment>
-            );
-          })}
-        </ClinicsWide>
-      </Section>
-      <div style={{ marginTop: 20, marginLeft: 10, marginBottom: 10 }}>
-        <Posts posts={posts.slice(0).reverse()} />
-      </div>
-      <Container>
-        <a
-          href="https://www.gdziepolek.pl/wyszukiwanie?q=Cannabis"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <CheckAvailability>
-            <h2>Sprawdź dostępność medycznej marihuany!</h2>
-          </CheckAvailability>
-        </a>
-      </Container>
+              );
+            })}
+          </ClinicsWide>
+        </Section>
+        <Container>
+          <Posts posts={posts.slice(4, 8).reverse()} />
+        </Container>
+        <Container>
+          <a
+            href="https://www.gdziepolek.pl/wyszukiwanie?q=Cannabis"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <CheckAvailability>
+              <h2>Sprawdź dostępność medycznej marihuany!</h2>
+            </CheckAvailability>
+          </a>
+        </Container>
+      </Content>
     </Container>
   );
 };
@@ -375,6 +434,7 @@ export const pageQuery = graphql`
           nodes: { elemMatch: { slug: { eq: "medyczna-marihuana" } } }
         }
       }
+      limit: 8
     ) {
       edges {
         node {
