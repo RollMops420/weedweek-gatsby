@@ -314,14 +314,17 @@ const RenderPost = ({
         </div>
       ) : (
         // <div style={{ position: 'relative', paddingBottom: '55%' }}>
-        <div style={{ maxWidth: '100%' }}>
-          <GatsbyImage
-            image={getImage(
-              post.featuredImage.node.localFile.childImageSharp.gatsbyImageData
-            )}
-            alt={post.featuredImage.node.altText}
-          />
-        </div>
+        post.featuredImage?.node?.localFile && (
+          <div style={{ maxWidth: '100%' }}>
+            <GatsbyImage
+              image={getImage(
+                post.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              )}
+              alt={post.featuredImage.node.altText}
+            />
+          </div>
+        )
         // </div>
       )}
     </ImageWrapper>
