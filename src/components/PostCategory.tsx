@@ -111,14 +111,16 @@ const Post = ({ post, circle = false }: Props) => {
             circle={circle}
           />
         ) : (
-          <Image
-            image={getImage(
-              post.node.featuredImage.node.localFile.childImageSharp
-                .gatsbyImageData
-            )}
-            alt={post.node.featuredImage.node.altText}
-            circle={circle}
-          />
+          post.node.featuredImage.node.localFile && (
+            <Image
+              image={getImage(
+                post.node.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              )}
+              alt={post.node.featuredImage.node.altText}
+              circle={circle}
+            />
+          )
         )}
         <Content>
           <div>
