@@ -388,7 +388,7 @@ const RenderPost = ({
               ),
             }}
           />
-          <Products products={products.edges} />
+          {/* <Products products={products.edges} /> */}
           {bannerVisible === 0 && adC.featuredImage && (
             <AdWrapper>
               <WideAd
