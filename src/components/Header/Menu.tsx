@@ -220,7 +220,8 @@ const Menu = ({ isOpen, onClick }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    if (window) setWidth(window.innerWidth);
+    const isBrowser = () => typeof window !== 'undefined';
+    isBrowser() && setWidth(window.innerWidth);
   }, []);
 
   return (
