@@ -220,7 +220,7 @@ const Menu = ({ isOpen, onClick }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    setWidth(window.innerWidth);
+    if (window) setWidth(window.innerWidth);
   }, []);
 
   return (
