@@ -26,8 +26,8 @@ module.exports = {
         },
         type: {
           Post: {
-            // limit: process.env.NODE_ENV === `development` ? 20 : 5000,
-            limit: 5000,
+            limit: process.env.NODE_ENV === `development` ? 20 : 5000,
+            // limit: 5000,
           },
           Tag: {
             limit: process.env.NODE_ENV === `development` ? 50 : 5000,

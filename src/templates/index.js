@@ -12,6 +12,7 @@ import Section from 'components/Section';
 import SquareAd from 'components/Ads/SquareAd';
 import AdWrapper from 'components/Ads/AdWrapper';
 import WideAd from 'components/Ads/WideAd';
+import GifAd from 'components/Ads/WideAd';
 import PostsDesc from 'components/PostsDesc';
 import Products from 'components/Products';
 import PopupAd from 'components/Ads/PopupAd';
@@ -66,7 +67,7 @@ const ShopLink = styled.a`
 `;
 
 const HomePage = ({ data }) => {
-  const { posts, nasiona, products, adA, adC } = data;
+  const { posts, nasiona, products, adA, adB, adC } = data;
   const popular = posts;
   const medyczna = data.medyczna;
   const waporyzacja = data.waporyzacja;
@@ -74,16 +75,16 @@ const HomePage = ({ data }) => {
   const [articles, setArticles] = useState(posts ? data.posts.edges : []);
   const [page, setPage] = useState(0);
 
-  const [bannerVisible, setBanner] = useState(0);
+  // const [bannerVisible, setBanner] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (bannerVisible === 0) setBanner(1);
-      if (bannerVisible === 1) setBanner(0);
-    }, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (bannerVisible === 0) setBanner(1);
+  //     if (bannerVisible === 1) setBanner(0);
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  });
+  //   return () => clearInterval(interval);
+  // });
 
   // const loadMoreHandler = async () => {
   //   const {
@@ -132,12 +133,18 @@ const HomePage = ({ data }) => {
       <SEO
         title="WeedWeek | Portal Konopny"
         desc="WEEDWEEK.PL - Najnowsze newsy ze świata konopi. Marihuana medyczna, marihuana rekreacyjna i konopie przemysłowe."
-        keywords="weedweek, marihuana, weed, 420, waporyzacja, konopie"
+        keywords="weedweek, marihuana, weed, 420, waporyzacja, konopie, cbd"
       />
       <Container full>
         <Section title="Najnowsze" small>
           <div>
             <Featured post={posts.edges[0]} />
+            <AdWrapper>
+              <GifAd
+                href={adC.ad_fields.link}
+                source={adC.featuredImage.node.sourceUrl}
+              />
+            </AdWrapper>
           </div>
           <div
             style={{
@@ -156,6 +163,12 @@ const HomePage = ({ data }) => {
         <Section full title="Produkty" style={{ paddingRight: 0 }}>
           <Products products={products.edges} />
         </Section>
+        {/* <WideAd
+          href={adC.ad_fields.link}
+          source={
+            adC.featuredImage.node.localFile.childImageSharp.gatsbyImageData
+          }
+        /> */}
         {/* <AdWrapper>
           {bannerVisible === 0 && adE.featuredImage && (
             <WideAd
@@ -230,6 +243,14 @@ const HomePage = ({ data }) => {
           </div>
         </Section>
       </Container>
+      {adB.featuredImage && (
+        <PopupAd
+          source={
+            adB.featuredImage.node.localFile.childImageSharp.gatsbyImageData
+          }
+          href={adB.ad_fields.link}
+        />
+      )}
       {/* <PopupAd
         banners={[
           {

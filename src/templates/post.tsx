@@ -16,6 +16,7 @@ import CalendarSVG from '../assets/icons/calendar.svg';
 import EyeSVG from '../assets/icons/eye.svg';
 /* Ads */
 import WideAd from 'components/Ads/WideAd';
+import GifAd from 'components/Ads/GifAd';
 import SquareAd from 'components/Ads/SquareAd';
 import { ICategory } from 'types/types';
 import AdWrapper from 'components/Ads/AdWrapper';
@@ -251,7 +252,17 @@ const RenderPost = ({
 }) => (
   <div>
     <AdWrapper>
-      {bannerVisible === 0 && adC.featuredImage && (
+      <GifAd
+        href={adC.ad_fields.link}
+        source={adC.featuredImage.node.sourceUrl}
+      />
+      {/* <WideAd
+        href={adC.ad_fields.link}
+        source={
+          adC.featuredImage.node.localFile.childImageSharp.gatsbyImageData
+        }
+      /> */}
+      {/* {bannerVisible === 0 && adC.featuredImage && (
         <WideAd
           href={adC.ad_fields.link}
           source={
@@ -266,7 +277,7 @@ const RenderPost = ({
             adE.featuredImage.node.localFile.childImageSharp.gatsbyImageData
           }
         />
-      )}
+      )} */}
     </AdWrapper>
     <Row>
       {post.categories.nodes.map(({ name, slug }) => (
@@ -349,7 +360,11 @@ const RenderPost = ({
             }}
           />
           <AdWrapper>
-            {bannerVisible === 0 && adC.featuredImage && (
+            <GifAd
+              href={adC.ad_fields.link}
+              source={adC.featuredImage.node.sourceUrl}
+            />
+            {/* {bannerVisible === 0 && adC.featuredImage && (
               <WideAd
                 href={adC.ad_fields.link}
                 source={adC.featuredImage.node.sourceUrl}
@@ -360,7 +375,7 @@ const RenderPost = ({
                 href={adE.ad_fields.link}
                 source={adE.featuredImage.node.sourceUrl}
               />
-            )}
+            )} */}
           </AdWrapper>
           <Content
             dangerouslySetInnerHTML={{
@@ -389,7 +404,11 @@ const RenderPost = ({
             }}
           />
           {/* <Products products={products.edges} /> */}
-          {bannerVisible === 0 && adC.featuredImage && (
+          <GifAd
+            href={adC.ad_fields.link}
+            source={adC.featuredImage.node.sourceUrl}
+          />
+          {/* {bannerVisible === 0 && adC.featuredImage && (
             <AdWrapper>
               <WideAd
                 href={adC.ad_fields.link}
@@ -404,7 +423,7 @@ const RenderPost = ({
                 source={adE.featuredImage.node.sourceUrl}
               />
             </AdWrapper>
-          )}
+          )} */}
           <Content
             dangerouslySetInnerHTML={{
               __html: post.content.substring(
@@ -955,6 +974,7 @@ export const pageQuery = graphql`
     adC: wpAd(title: { eq: "C" }) {
       featuredImage {
         node {
+          sourceUrl
           localFile {
             childImageSharp {
               gatsbyImageData
