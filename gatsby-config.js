@@ -12,13 +12,10 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.WPGRAPHQL_URL || 'https://admin.weedweek.pl/graphql/',
-        production: {
-          allow404Images: true,
-        },
         schema: {
-          perPage: 15, // currently set to 100
-          requestConcurrency: 3, // currently set to 15
-          previewRequestConcurrency: 2, // currently set to 5
+          perPage: 50, // currently set to 100
+          requestConcurrency: 5, // currently set to 15
+          previewRequestConcurrency: 5, // currently set to 5
           timeout: 60000,
         },
         develop: {
@@ -27,7 +24,6 @@ module.exports = {
         type: {
           Post: {
             limit: process.env.NODE_ENV === `development` ? 20 : 5000,
-            // limit: 5000,
           },
           Tag: {
             limit: process.env.NODE_ENV === `development` ? 50 : 5000,
@@ -40,7 +36,7 @@ module.exports = {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /assets/, // See below to configure properly
+          include: /assets/,
         },
       },
     },
