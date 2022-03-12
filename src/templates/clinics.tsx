@@ -8,7 +8,6 @@ import SEO from 'components/SEO';
 import Section from 'components/Section';
 // import { Post as IPost } from "types/types";
 import Posts from 'components/Posts';
-import 'leaflet/dist/leaflet.css';
 
 const WideBanner = styled.div`
   width: 100%;
