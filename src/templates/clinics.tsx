@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Container from 'components/Container';
 import SEO from 'components/SEO';
 import Section from 'components/Section';
 // import { Post as IPost } from "types/types";
 import Posts from 'components/Posts';
-// import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
 const WideBanner = styled.div`
   width: 100%;
