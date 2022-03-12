@@ -18,6 +18,10 @@ spec:
       containers:
         - name: wordpress
           image: wordpress:5.9.1-php8.0-apache
+          resources:
+            limits:
+              cpu: "1200m"
+              memory: "1000M"
           env:
             - name: WORDPRESS_DB_HOST
               value: mariadb.database

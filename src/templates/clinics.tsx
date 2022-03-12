@@ -264,6 +264,25 @@ const ClinicsPage = ({ data }) => {
         <SidebarItem href="/">Polecane kliniki</SidebarItem>
         <SidebarItem href="/">Dostępność</SidebarItem>
       </Sidebar> */}
+      {typeof window !== 'undefined' && (
+        <Content style={{ padding: 20, borderRadius: 10, overflow: 'hidden' }}>
+          <Container>
+            <MapContainer
+              center={[52.061, 18.156]}
+              zoom={6}
+              style={{ width: 'auto', height: 400 }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[50.36515, 18.79046]}>
+                <Popup>CLINICANNA</Popup>
+              </Marker>
+            </MapContainer>
+          </Container>
+        </Content>
+      )}
       {/* <Content style={{ padding: 20, borderRadius: 10, overflow: 'hidden' }}>
         <Container>
           <MapContainer
