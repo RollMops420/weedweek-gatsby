@@ -373,7 +373,7 @@ const ClinicsPage = ({ data }) => {
             })}
           </ClinicsWide>
         </Section>
-        <Container>
+        <Container horizontal>
           <Posts posts={posts.slice(0, 4)} />
         </Container>
         <Section full>
@@ -417,7 +417,7 @@ const ClinicsPage = ({ data }) => {
             })}
           </ClinicsWide>
         </Section>
-        <Container>
+        <Container horizontal>
           <Posts posts={posts.slice(4, 8).reverse()} />
         </Container>
         <Container>
