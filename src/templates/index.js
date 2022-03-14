@@ -12,7 +12,7 @@ import Section from 'components/Section';
 import SquareAd from 'components/Ads/SquareAd';
 import AdWrapper from 'components/Ads/AdWrapper';
 import WideAd from 'components/Ads/WideAd';
-import GifAd from 'components/Ads/WideAd';
+import GifAd from 'components/Ads/GifAd';
 import PostsDesc from 'components/PostsDesc';
 import Products from 'components/Products';
 import PopupAd from 'components/Ads/PopupAd';
@@ -127,7 +127,6 @@ const HomePage = ({ data }) => {
   //   setArticles((prevState) => [...prevState, ...posts.edges]);
   //   setPage(page + 1);
   // };
-
   return (
     <>
       <SEO
@@ -139,6 +138,9 @@ const HomePage = ({ data }) => {
         <Section title="Najnowsze" small>
           <div>
             <Featured post={posts.edges[0]} />
+            {/* <a href={adC.ad_fields.link}>
+              <img src={adC.featuredImage.node.sourceUrl} />
+            </a> */}
             <AdWrapper>
               <GifAd
                 href={adC.ad_fields.link}
@@ -343,6 +345,7 @@ export const pageQuery = graphql`
     adC: wpAd(title: { eq: "C" }) {
       featuredImage {
         node {
+          sourceUrl
           localFile {
             childImageSharp {
               gatsbyImageData

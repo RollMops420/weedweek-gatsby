@@ -33,6 +33,8 @@ const Letter = styled.span`
 `;
 
 const GifAd = ({ source, href }: { source: string; href: string }) => {
+  console.log(source, href);
+
   return (
     <a href={href} target="_blank" rel="noopener noreferrer nofollow">
       <Wrapper>
