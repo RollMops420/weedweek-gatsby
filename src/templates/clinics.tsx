@@ -299,7 +299,7 @@ const ClinicsPage = ({ data }) => {
           </MapContainer>
         </Container>
       </Content> */}
-      <Container top>
+      <Container>
         <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
           <HowToContainer>
             <HowTo>Jak uzyskać receptę?</HowTo>
