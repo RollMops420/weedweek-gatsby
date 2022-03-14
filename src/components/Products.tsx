@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
+  min-width: 150px;
 `;
 
 const ShopName = styled.a`
@@ -33,6 +34,7 @@ const Image = styled(GatsbyImage)`
   background-color: #fff;
   width: 100%;
   height: 400px;
+  min-width: 150px;
 `;
 
 const Content = styled.div`
@@ -70,14 +72,14 @@ const ContentWrapper = styled.div`
   height: 100%;
 `;
 
-const ContentCarousel = styled.div`
+const ContentCarousel = styled.div<any>`
   display: flex;
   gap: 1rem;
   transition: all 250ms linear;
   -ms-overflow-style: none;
   scrollbar-width: none;
   & > * {
-    width: calc(100% / 4);
+    width: calc(100% / ${({ length }) => length});
     flex-shrink: 0;
     flex-grow: 1;
   }
@@ -126,12 +128,15 @@ const Button = styled.a<any>`
 
 const Products = ({ products = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [show] = useState(
-    products && products.length <= 4 ? products.length : 4
-  );
+  const [width, setWidth] = useState(200);
+  const [show] = useState(width > 500 ? products && products.length : 2);
   const [length, setLength] = useState(products && products.length);
 
   const [touchPosition, setTouchPosition] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== undefined) setWidth(window.innerWidth);
+  });
 
   useEffect(() => {
     setLength(products.length);
@@ -199,8 +204,12 @@ const Products = ({ products = [] }) => {
       >
         <ContentCarousel
           style={{
-            transform: `translateX(-${currentIndex * (100 / show)}%)`,
+            transform: `translateX(-${
+              currentIndex *
+              (100 / (width > 500 ? products && products.length : 2))
+            }%)`,
           }}
+          length={products.length}
         >
           {products.map((node) => {
             const product = node.node;
