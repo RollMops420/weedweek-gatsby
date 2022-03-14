@@ -299,6 +299,19 @@ const ClinicsPage = ({ data }) => {
           </MapContainer>
         </Container>
       </Content> */}
+      <Container top>
+        <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
+          <HowToContainer>
+            <HowTo>Jak uzyskać receptę?</HowTo>
+            <StaticImage
+              src="../assets/images/natural.png"
+              alt="Natural"
+              width={128}
+              height={128}
+            />
+          </HowToContainer>
+        </Link>
+      </Container>
       <Content>
         {/* <Container top>
         <OurClinic>
@@ -315,9 +328,9 @@ const ClinicsPage = ({ data }) => {
       </Container> */}
 
         <Section full>
-          <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
+          {/* <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
             <HowObtain>Dowiedz się jak uzyskać receptę</HowObtain>
-          </Link>
+          </Link> */}
           {/* <RecommendedClinics> */}
           <Recommended>Polecane kliniki</Recommended>
           <ClinicsWide list>
