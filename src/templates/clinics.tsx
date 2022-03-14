@@ -263,7 +263,7 @@ const ClinicsPage = ({ data }) => {
         <SidebarItem href="/">Polecane kliniki</SidebarItem>
         <SidebarItem href="/">Dostępność</SidebarItem>
       </Sidebar> */}
-      {typeof window !== 'undefined' && (
+      {/* {typeof window !== 'undefined' && (
         <Content style={{ padding: 20, borderRadius: 10, overflow: 'hidden' }}>
           <Container>
             <MapContainer
@@ -281,7 +281,7 @@ const ClinicsPage = ({ data }) => {
             </MapContainer>
           </Container>
         </Content>
-      )}
+      )} */}
       {/* <Content style={{ padding: 20, borderRadius: 10, overflow: 'hidden' }}>
         <Container>
           <MapContainer
