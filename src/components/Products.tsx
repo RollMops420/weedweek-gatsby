@@ -218,14 +218,16 @@ const Products = ({ products = [] }) => {
                 {/* <Link href="https://rollmops.pl/" passHref>
               <ShopName>{product.shopName}</ShopName>
             </Link> */}
-                {product.featuredImage.node.localFile && (
-                  <Image
-                    image={getImage(
-                      product.featuredImage.node.localFile.childImageSharp
-                        .gatsbyImageData
-                    )}
-                  />
-                )}
+                {product.featuredImage &&
+                  product.featuredImage.node &&
+                  product.featuredImage.node.localFile && (
+                    <Image
+                      image={getImage(
+                        product.featuredImage.node.localFile.childImageSharp
+                          .gatsbyImageData
+                      )}
+                    />
+                  )}
                 <Content>
                   <Price>{product.details.price} zł</Price>
                   <Name dangerouslySetInnerHTML={{ __html: product.title }} />
