@@ -70,13 +70,15 @@ const Featured = ({ post }: Props) => {
   return (
     <Link to={`/${post.node.slug}`}>
       <Wrapper>
-        <Image
-          image={
-            post.node.featuredImage.node.localFile.childImageSharp
-              .gatsbyImageData
-          }
-          alt={post.node.title}
-        />
+        {post.node.featuredImage.node.localFile && (
+          <Image
+            image={
+              post.node.featuredImage.node.localFile.childImageSharp
+                .gatsbyImageData
+            }
+            alt={post.node.title}
+          />
+        )}
         <Content>
           <Category slug={post.node.categories.nodes[0].slug}>
             {post.node.categories.nodes[0].name}

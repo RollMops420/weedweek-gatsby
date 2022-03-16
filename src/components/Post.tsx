@@ -86,14 +86,16 @@ const Post = ({ post, circle = false }: Props) => {
     <Link to={`/${post.node.slug}`}>
       <StyledLink>
         <Wrapper>
-          <Image
-            image={
-              post.node.featuredImage.node.localFile.childImageSharp
-                .gatsbyImageData
-            }
-            alt={post.node.title}
-            circle={circle}
-          />
+          {post.node.featuredImage.node.localFile && (
+            <Image
+              image={
+                post.node.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              }
+              alt={post.node.title}
+              circle={circle}
+            />
+          )}
           <Content circle={circle}>
             <Heading>
               {post.node.title.substring(0, 65)}

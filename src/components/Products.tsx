@@ -218,7 +218,7 @@ const Products = ({ products = [] }) => {
                 {/* <Link href="https://rollmops.pl/" passHref>
               <ShopName>{product.shopName}</ShopName>
             </Link> */}
-                {product.featuredImage && (
+                {product.featuredImage.node.localFile && (
                   <Image
                     image={getImage(
                       product.featuredImage.node.localFile.childImageSharp

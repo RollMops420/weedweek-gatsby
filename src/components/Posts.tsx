@@ -94,13 +94,16 @@ const Post = ({ post }: any) => (
               {post.categories.nodes[0].name}
             </StyledCategory>
           )}
-          <Image
-            image={getImage(
-              post.featuredImage.node.localFile.childImageSharp.gatsbyImageData
-            )}
-            alt={post.title}
-            objectFit="cover"
-          />
+          {post.featuredImage.node.localFile && (
+            <Image
+              image={getImage(
+                post.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              )}
+              alt={post.title}
+              objectFit="cover"
+            />
+          )}
         </ImageWrapper>
         <div>
           <Heading>{post.title}</Heading>

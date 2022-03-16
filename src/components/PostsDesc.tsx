@@ -67,12 +67,14 @@ const PostsDesc = ({ posts }: Props) => {
           <a>
             <PostWrapper>
               {/* <ImageWrapper> */}
-              <GatsbyImage
-                image={getImage(
-                  post.node.featuredImage.node.localFile.childImageSharp
-                    .gatsbyImageData
-                )}
-              />
+              {post.node.featuredImage.node.localFiile && (
+                <GatsbyImage
+                  image={getImage(
+                    post.node.featuredImage.node.localFile.childImageSharp
+                      .gatsbyImageData
+                  )}
+                />
+              )}
               {/* </ImageWrapper> */}
               <div>
                 <Heading>{post.node.title}</Heading>
