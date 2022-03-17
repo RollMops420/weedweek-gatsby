@@ -66,7 +66,6 @@ const PostsDesc = ({ posts }: Props) => {
         <Link key={post.node.slug} to={`/${post.node.slug}`}>
           <a>
             <PostWrapper>
-              {/* <ImageWrapper> */}
               {post.node.featuredImage.node.localFiile && (
                 <GatsbyImage
                   image={getImage(
@@ -75,7 +74,6 @@ const PostsDesc = ({ posts }: Props) => {
                   )}
                 />
               )}
-              {/* </ImageWrapper> */}
               <div>
                 <Heading>{post.node.title}</Heading>
                 <Desc

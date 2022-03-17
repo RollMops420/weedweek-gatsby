@@ -7,19 +7,12 @@ interface Props {
 }
 
 const Wrapper = styled.button`
-  /* @media (prefers-color-scheme: dark) { */
   background: linear-gradient(
     to right,
     ${({ theme }) => theme.primary} 0%,
     ${({ theme }) => theme.secondary} 100%
   );
   color: white;
-  /* }
-  @media (prefers-color-scheme: light) {
-    background: linear-gradient(to right, ${({ theme }) =>
-    theme.light.primary} 0%, ${({ theme }) => theme.light.secondary} 100%);
-    color: black;
-  } */
   width: 100%;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
   text-align: center;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 
 interface Props {
   hasPreviousPage: boolean;
@@ -84,13 +84,6 @@ const Pagination = ({ hasPreviousPage, hasNextPage }: Props) => {
           <StaticImage image="/icons/chevron-left.svg" width={16} height={16} />
         </Arrow>
       )}
-      {/* <NumbersWrapper>
-          <Number selected={false}>1</Number>
-          <Number selected={false}>2</Number>
-          <Number selected={false}>3</Number>
-          <Number selected={false}>4</Number>
-          <Number selected={true}>5</Number>
-        </NumbersWrapper> */}
       {hasNextPage && (
         <ArrowRight>
           <StaticImage

@@ -215,9 +215,6 @@ const Products = ({ products = [] }) => {
             const product = node.node;
             return (
               <Wrapper key={product.id}>
-                {/* <Link href="https://rollmops.pl/" passHref>
-              <ShopName>{product.shopName}</ShopName>
-            </Link> */}
                 {product.featuredImage &&
                   product.featuredImage.node &&
                   product.featuredImage.node.localFile && (

@@ -23,12 +23,7 @@ const StyledLink = styled.a`
 `;
 
 const Wrapper = styled.article`
-  /* @media (prefers-color-scheme: dark) { */
   border-bottom: 2px solid ${({ theme }) => theme.primary};
-  /* }
-  @media (prefers-color-scheme: light) {
-    border-bottom: 2px solid ${({ theme }) => theme.light.primary};
-  } */
   display: grid;
   grid-template-columns: 40% 60%;
   grid-gap: 10px;
@@ -74,12 +69,7 @@ const Content = styled.div`
 const Heading = styled.h3`
   font-size: ${({ theme }) => theme.font.size.xs};
   margin: 0;
-  /* @media (prefers-color-scheme: dark) { */
   color: ${({ theme }) => theme.text};
-  /* }
-  @media (prefers-color-scheme: light) {
-    color: #30405b;
-  } */
 `;
 
 const Excerpt = styled.p`

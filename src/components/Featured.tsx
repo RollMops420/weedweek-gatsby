@@ -27,7 +27,6 @@ const Wrapper = styled.article`
 `;
 
 const Image = styled(GatsbyImage)`
-  /* padding-bottom: 30%; */
   object-fit: cover;
   width: 100%;
 `;

@@ -25,12 +25,7 @@ const Image = styled(GatsbyImage)`
 
 const Code = styled.span`
   display: block;
-  /* @media (prefers-color-scheme: dark) { */
   color: white;
-  /* }
-  @media (prefers-color-scheme: light) {
-    color: black;
-  } */
 `;
 
 const Discounts = ({ data }: any) => {

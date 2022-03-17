@@ -38,19 +38,12 @@ const TextInput = styled.textarea`
 `;
 
 const Send = styled.button`
-  /* @media (prefers-color-scheme: dark) { */
   background: linear-gradient(
     to right,
     ${({ theme }) => theme.primary} 0%,
     ${({ theme }) => theme.secondary} 100%
   );
   color: ${({ theme }) => theme.white};
-  /* }
-  @media (prefers-color-scheme: light) {
-    background: linear-gradient(to right, ${({ theme }) =>
-    theme.light.primary} 0%, ${({ theme }) => theme.light.secondary} 100%);
-    color: ${({ theme }) => theme.light.black};
-  } */
   border: none;
   border-radius: 3px;
   padding: 10px 0;
@@ -88,12 +81,7 @@ const ContactInfo = styled.div`
 `;
 
 const InfoText = styled.span`
-  /* @media (prefers-color-scheme: dark) { */
   color: ${({ theme }) => theme.white};
-  /* }
-  @media (prefers-color-scheme: light) {
-    color: ${({ theme }) => theme.light.black};
-  } */
   font-family: 'Poppins';
   font-weight: bold;
 `;

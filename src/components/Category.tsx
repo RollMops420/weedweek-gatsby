@@ -13,19 +13,12 @@ const StyledLink = styled.a`
 `;
 
 const Wrapper = styled.div`
-  /* @media (prefers-color-scheme: dark) { */
   background: linear-gradient(
     to right,
     ${({ theme }) => theme.primary} 0%,
     ${({ theme }) => theme.secondary} 100%
   );
   color: white;
-  /* }
-  @media (prefers-color-scheme: light) {
-    background: linear-gradient(to right, ${({ theme }) =>
-    theme.light.primary} 0%, ${({ theme }) => theme.light.secondary} 100%);
-    color: black;
-  } */
   display: inline-block;
   padding: 7px 15px;
   border-radius: 20px;
