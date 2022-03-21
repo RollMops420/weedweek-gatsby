@@ -346,21 +346,22 @@ const RenderPost = ({
         }}
       />
     )}
-    <>
-      <Content
-        dangerouslySetInnerHTML={{
-          __html: post.content.substring(
-            post.content.indexOf('</h3>'),
-            post.content.lastIndexOf('<strong>')
-          ),
-        }}
-      />
-      {/* <Products products={products.edges} /> */}
-      <GifAd
-        href={adC.ad_fields.link}
-        source={adC.featuredImage.node.sourceUrl}
-      />
-      {/* {bannerVisible === 0 && adC.featuredImage && (
+    {post.content && (
+      <>
+        <Content
+          dangerouslySetInnerHTML={{
+            __html: post.content.substring(
+              post.content.indexOf('</h3>'),
+              post.content.lastIndexOf('<strong>')
+            ),
+          }}
+        />
+        {/* <Products products={products.edges} /> */}
+        <GifAd
+          href={adC.ad_fields.link}
+          source={adC.featuredImage.node.sourceUrl}
+        />
+        {/* {bannerVisible === 0 && adC.featuredImage && (
             <AdWrapper>
               <WideAd
                 href={adC.ad_fields.link}
@@ -376,15 +377,16 @@ const RenderPost = ({
               />
             </AdWrapper>
           )} */}
-      <Content
-        dangerouslySetInnerHTML={{
-          __html: post.content.substring(
-            post.content.lastIndexOf('<strong>'),
-            9999999
-          ),
-        }}
-      />
-    </>
+        <Content
+          dangerouslySetInnerHTML={{
+            __html: post.content.substring(
+              post.content.lastIndexOf('<strong>'),
+              9999999
+            ),
+          }}
+        />
+      </>
+    )}
   </div>
 );
 
