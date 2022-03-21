@@ -346,69 +346,21 @@ const RenderPost = ({
         }}
       />
     )}
-    {post.content &&
-      (post.content.includes('wp-image-789') ? (
-        <>
-          <Content
-            dangerouslySetInnerHTML={{
-              __html: post.content.substring(
-                post.content.indexOf('</h3>'),
-                post.content.indexOf(
-                  '<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="512" src="https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1024x512.png" alt="" class="wp-image-789" srcset="https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1024x512.png 1024w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-300x150.png 300w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-768x384.png 768w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1536x768.png 1536w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1200x600.png 1200w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz.png 1728w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>'
-                )
-              ),
-            }}
-          />
-          <AdWrapper>
-            <GifAd
-              href={adC.ad_fields.link}
-              source={adC.featuredImage.node.sourceUrl}
-            />
-            {/* {bannerVisible === 0 && adC.featuredImage && (
-              <WideAd
-                href={adC.ad_fields.link}
-                source={adC.featuredImage.node.sourceUrl}
-              />
-            )}
-            {bannerVisible === 1 && adE.featuredImage && (
-              <WideAd
-                href={adE.ad_fields.link}
-                source={adE.featuredImage.node.sourceUrl}
-              />
-            )} */}
-          </AdWrapper>
-          <Content
-            dangerouslySetInnerHTML={{
-              __html: post.content
-                .substring(
-                  post.content.indexOf(
-                    '<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="512" src="https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1024x512.png" alt="" class="wp-image-789" srcset="https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1024x512.png 1024w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-300x150.png 300w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-768x384.png 768w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1536x768.png 1536w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1200x600.png 1200w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz.png 1728w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>'
-                  ),
-                  999999
-                )
-                .replace(
-                  '<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="512" src="https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1024x512.png" alt="" class="wp-image-789" srcset="https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1024x512.png 1024w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-300x150.png 300w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-768x384.png 768w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1536x768.png 1536w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz-1200x600.png 1200w, https://admin.weedweek.pl/wp-content/uploads/2021/03/rsz.png 1728w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>',
-                  ''
-                ),
-            }}
-          />
-        </>
-      ) : (
-        <>
-          <Content
-            dangerouslySetInnerHTML={{
-              __html: post.content.substring(
-                post.content.indexOf('</h3>'),
-                post.content.lastIndexOf('<strong>')
-              ),
-            }}
-          />
-          {/* <Products products={products.edges} /> */}
-          <GifAd
-            href={adC.ad_fields.link}
-            source={adC.featuredImage.node.sourceUrl}
-          />
-          {/* {bannerVisible === 0 && adC.featuredImage && (
+    <>
+      <Content
+        dangerouslySetInnerHTML={{
+          __html: post.content.substring(
+            post.content.indexOf('</h3>'),
+            post.content.lastIndexOf('<strong>')
+          ),
+        }}
+      />
+      {/* <Products products={products.edges} /> */}
+      <GifAd
+        href={adC.ad_fields.link}
+        source={adC.featuredImage.node.sourceUrl}
+      />
+      {/* {bannerVisible === 0 && adC.featuredImage && (
             <AdWrapper>
               <WideAd
                 href={adC.ad_fields.link}
@@ -424,16 +376,15 @@ const RenderPost = ({
               />
             </AdWrapper>
           )} */}
-          <Content
-            dangerouslySetInnerHTML={{
-              __html: post.content.substring(
-                post.content.lastIndexOf('<strong>'),
-                9999999
-              ),
-            }}
-          />
-        </>
-      ))}
+      <Content
+        dangerouslySetInnerHTML={{
+          __html: post.content.substring(
+            post.content.lastIndexOf('<strong>'),
+            9999999
+          ),
+        }}
+      />
+    </>
   </div>
 );
 
