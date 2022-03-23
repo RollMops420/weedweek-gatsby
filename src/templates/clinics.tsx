@@ -415,8 +415,10 @@ const ClinicsPage = ({ data }) => {
             })}
           </ClinicsWide>
         </Section>
-        <Container horizontal>
+        <Container>
+          {/* <Container horizontal> */}
           <Posts posts={posts.slice(0, 4)} />
+          {/* </Container> */}
         </Container>
         <Section full>
           <ClinicsWide list>
