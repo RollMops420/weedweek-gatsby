@@ -17,8 +17,8 @@ const Wrapper = styled.div<any>`
   ${({ horizontal }) =>
     horizontal &&
     `
-margin-left: 10px !important;
-margin-right: 10px !important;
+margin-left: 10px;
+margin-right: 10px;
 `};
   max-width: 100%;
   ${({ theme }) => theme.mq.l} {
