@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, graphql } from 'gatsby';
 import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
@@ -235,10 +235,32 @@ const SidebarIcon = styled.div`
   margin-right: 10px;
 `;
 
+const OurClinicWrapper = styled.div`
+  padding: 10px;
+  max-width: 768px;
+  margin: 0 auto;
+`;
+
+const CenterImage = styled(StaticImage)`
+  margin: 0 auto;
+`;
+
 const ClinicsPage = ({ data }) => {
   const clinics = data.allWpClinic.edges;
+  const [width, setWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 400
+  );
   const posts = data.allWpPost.edges;
   let postIndex = 0;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const firstClinic = clinics[0].node;
   return (
@@ -299,6 +321,26 @@ const ClinicsPage = ({ data }) => {
           </MapContainer>
         </Container>
       </Content> */}
+      <a href="">
+        <Container>
+          <OurClinicWrapper>
+            <div>
+              {width > 768 ? (
+                <StaticImage
+                  src="../assets/images/klinika.png"
+                  alt="Klinika"
+                  layout="fullWidth"
+                />
+              ) : (
+                <StaticImage
+                  src="../assets/images/klinikamobile.png"
+                  alt="Klinika"
+                />
+              )}
+            </div>
+          </OurClinicWrapper>
+        </Container>
+      </a>
       <Container>
         <Link to="/jak-uzyskac-recepte-na-medyczna-marihuane-praktyczne-porady">
           <HowToContainer>
