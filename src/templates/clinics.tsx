@@ -328,13 +328,14 @@ const ClinicsPage = ({ data }) => {
         <Container>
           <OurClinicWrapper>
             <div>
-              {width > 500 ? (
+              {width > 500 && (
                 <StaticImage
                   src="../assets/images/klinika.png"
                   alt="Klinika"
                   layout="fullWidth"
                 />
-              ) : (
+              )}
+              {width < 500 && (
                 <StaticImage
                   src="../assets/images/klinikamobile.png"
                   alt="Klinika"
