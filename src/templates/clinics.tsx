@@ -236,9 +236,12 @@ const SidebarIcon = styled.div`
 `;
 
 const OurClinicWrapper = styled.div`
-  padding: 10px;
-  max-width: 768px;
+  border-radius: 10px;
+  overflow: hidden;
+  /* padding: 10px; */
+  /* max-width: 768px; */
   margin: 0 auto;
+  margin-top: 20px;
 `;
 
 const CenterImage = styled(StaticImage)`
