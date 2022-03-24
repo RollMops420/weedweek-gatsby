@@ -238,7 +238,7 @@ const SidebarIcon = styled.div`
 const OurClinicWrapper = styled.div`
   border-radius: 10px;
   overflow: hidden;
-  /* padding: 10px; */
+  padding: 10px;
   /* max-width: 768px; */
   margin: 0 auto;
   margin-top: 20px;
@@ -250,19 +250,19 @@ const CenterImage = styled(StaticImage)`
 
 const ClinicsPage = ({ data }) => {
   const clinics = data.allWpClinic.edges;
-  const [width, setWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 400
-  );
+  const isBrowser = typeof window !== 'undefined';
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0);
   const posts = data.allWpPost.edges;
   let postIndex = 0;
+  console.log(isBrowser ? window.innerWidth : 'Brak');
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (!isBrowser) return false;
+
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const firstClinic = clinics[0].node;
