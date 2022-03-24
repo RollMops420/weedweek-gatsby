@@ -23,12 +23,12 @@ module.exports = {
         },
         type: {
           Post: {
-            // limit: process.env.NODE_ENV === `development` ? 20 : 5000,
-            limit: 50,
+            limit: process.env.NODE_ENV === `development` ? 20 : 5000,
+            // limit: 50,
           },
           Tag: {
-            // limit: process.env.NODE_ENV === `development` ? 50 : 5000,
-            limit: 50,
+            limit: process.env.NODE_ENV === `development` ? 50 : 5000,
+            // limit: 50,
           },
         },
       },
