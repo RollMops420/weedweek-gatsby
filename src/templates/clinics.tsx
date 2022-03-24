@@ -328,7 +328,7 @@ const ClinicsPage = ({ data }) => {
         <Container>
           <OurClinicWrapper>
             <div>
-              {width > 768 ? (
+              {width > 500 ? (
                 <StaticImage
                   src="../assets/images/klinika.png"
                   alt="Klinika"
