@@ -239,9 +239,18 @@ const OurClinicWrapper = styled.div`
   border-radius: 10px;
   overflow: hidden;
   padding: 10px;
-  /* max-width: 768px; */
   margin: 0 auto;
   margin-top: 20px;
+  display: none;
+  ${({ theme }) => theme.mq.m} {
+    display: block;
+  }
+`;
+
+const OurClinicMobile = styled.div`
+  ${({ theme }) => theme.mq.m} {
+    display: none;
+  }
 `;
 
 const CenterImage = styled(StaticImage)`
@@ -251,19 +260,8 @@ const CenterImage = styled(StaticImage)`
 const ClinicsPage = ({ data }) => {
   const clinics = data.allWpClinic.edges;
   const isBrowser = typeof window !== 'undefined';
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0);
   const posts = data.allWpPost.edges;
   let postIndex = 0;
-  console.log(isBrowser ? window.innerWidth : 'Brak');
-
-  useEffect(() => {
-    if (!isBrowser) return false;
-
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const firstClinic = clinics[0].node;
   return (
@@ -327,22 +325,18 @@ const ClinicsPage = ({ data }) => {
       <a href="">
         <Container>
           <OurClinicWrapper>
-            <div>
-              {width > 500 && (
-                <StaticImage
-                  src="../assets/images/klinika.png"
-                  alt="Klinika"
-                  layout="fullWidth"
-                />
-              )}
-              {width < 500 && (
-                <StaticImage
-                  src="../assets/images/klinikamobile.png"
-                  alt="Klinika"
-                />
-              )}
-            </div>
+            <StaticImage
+              src="../assets/images/klinika.png"
+              alt="Klinika"
+              layout="fullWidth"
+            />
           </OurClinicWrapper>
+          <OurClinicMobile>
+            <StaticImage
+              src="../assets/images/klinikamobile.png"
+              alt="Klinika"
+            />
+          </OurClinicMobile>
         </Container>
       </a>
       <Container>

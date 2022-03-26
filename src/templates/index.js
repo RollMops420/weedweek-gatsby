@@ -141,7 +141,7 @@ const HomePage = ({ data }) => {
             {/* <a href={adC.ad_fields.link}>
               <img src={adC.featuredImage.node.sourceUrl} />
             </a> */}
-            <AdWrapper>
+            <AdWrapper style={{ marginBottom: 0 }}>
               <GifAd
                 href={adC.ad_fields.link}
                 source={adC.featuredImage.node.sourceUrl}
@@ -165,6 +165,23 @@ const HomePage = ({ data }) => {
         <Section full title="Produkty" style={{ paddingRight: 0 }}>
           <Products products={products.edges} />
         </Section>
+        <a
+          href="https://panpestka.pl/?utm_source=weedweek.pl"
+          style={{
+            display: 'block',
+            margin: '0 auto',
+            marginBottom: 20,
+            width: 200,
+            height: 200,
+            borderRadius: 10,
+            overflow: 'hidden',
+          }}
+        >
+          <StaticImage
+            src="../assets/images/pestkakwadrat.jpeg"
+            alt="Pan Pestka"
+          />
+        </a>
         {/* <WideAd
           href={adC.ad_fields.link}
           source={

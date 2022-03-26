@@ -605,6 +605,20 @@ const PostPage = ({ data }: Props) => {
             )}
           </div>
           <RightWrapperMobile>
+            <a
+              href="https://panpestka.pl/?utm_source=weedweek.pl"
+              style={{
+                display: 'block',
+                margin: '20px 0',
+                borderRadius: 10,
+                overflow: 'hidden',
+              }}
+            >
+              <StaticImage
+                src="../assets/images/pestkakwadrat.jpeg"
+                alt="Pan Pestka"
+              />
+            </a>
             <StickySection>
               <Sticky>
                 <div>
@@ -642,7 +656,7 @@ const PostPage = ({ data }: Props) => {
                       <h4>Kącik Ornitologiczny</h4>
                       <span>
                         Wspierany przez{' '}
-                        <ShopLink href="https://panpestka.pl/">
+                        <ShopLink href="https://panpestka.pl/?utm_source=weedweek.pl">
                           PanPestka.pl
                         </ShopLink>
                       </span>
@@ -692,15 +706,31 @@ const PostPage = ({ data }: Props) => {
             <Sticky>
               <div>
                 <h4>Najnowsze</h4>
-                {newests
-                  ? newests.edges.map((post, index) => {
-                      if (index === 0) return null;
-                      return <PostSmall post={post} key={index} circle />;
-                    })
-                  : null}
+                <div>
+                  {newests
+                    ? newests.edges.map((post, index) => {
+                        if (index === 0) return null;
+                        return <PostSmall post={post} key={index} circle />;
+                      })
+                    : null}
+                </div>
               </div>
             </Sticky>
           </StickySection>
+          <a
+            href="https://panpestka.pl/?utm_source=weedweek.pl"
+            style={{
+              display: 'block',
+              margin: '20px 0',
+              borderRadius: 10,
+              overflow: 'hidden',
+            }}
+          >
+            <StaticImage
+              src="../assets/images/pestkakwadrat.jpeg"
+              alt="Pan Pestka"
+            />
+          </a>
           <ShopSection>
             <Sticky>
               <div>
@@ -739,14 +769,6 @@ const PostPage = ({ data }: Props) => {
               </div>
             </Sticky>
           </ShopSection>
-          {/* <Sticky>
-                {adB.featuredImage && (
-                  <SquareAd
-                    href={adB.ad_fields.link}
-                    source={adB.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
-                  />
-                )}
-              </Sticky> */}
         </RightWrapper>
       </Section>
       <Section full id="testidhah">

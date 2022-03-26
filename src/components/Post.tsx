@@ -24,8 +24,9 @@ const StyledLink = styled.a`
 `;
 
 const Wrapper = styled.article`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-bottom: 10px;
   &:hover {
     cursor: pointer;
   }
@@ -39,12 +40,11 @@ const Wrapper = styled.article`
 const Image = styled(GatsbyImage)`
   margin-right: 10px;
   width: 35%;
-  height: 100px;
+  height: 100%;
   border-radius: 8px;
   & img {
     border-radius: 8px;
   }
-  align-self: flex-start;
   ${({ circle }: { circle: boolean }) =>
     circle &&
     `
@@ -84,26 +84,24 @@ const Date = styled.p`
 const Post = ({ post, circle = false }: Props) => {
   return (
     <Link to={`/${post.node.slug}`}>
-      <StyledLink>
-        <Wrapper>
-          {post.node.featuredImage.node.localFile && (
-            <Image
-              image={
-                post.node.featuredImage.node.localFile.childImageSharp
-                  .gatsbyImageData
-              }
-              alt={post.node.title}
-              circle={circle}
-            />
-          )}
-          <Content circle={circle}>
-            <Heading>
-              {post.node.title.substring(0, 65)}
-              {post.node.title.length > 65 && '...'}
-            </Heading>
-          </Content>
-        </Wrapper>
-      </StyledLink>
+      <Wrapper>
+        {post.node.featuredImage.node.localFile && (
+          <Image
+            image={
+              post.node.featuredImage.node.localFile.childImageSharp
+                .gatsbyImageData
+            }
+            alt={post.node.title}
+            circle={circle}
+          />
+        )}
+        {/* <Content circle={circle}> */}
+        <Heading>
+          {post.node.title.substring(0, 65)}
+          {post.node.title.length > 65 && '...'}
+        </Heading>
+        {/* </Content> */}
+      </Wrapper>
     </Link>
   );
 };
