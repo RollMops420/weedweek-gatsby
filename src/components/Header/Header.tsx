@@ -173,6 +173,24 @@ const CheckBox = styled.input`
   }
 `;
 
+const Hesi = styled.div`
+  width: 34px;
+  height: 45px;
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  z-index: 99;
+  opacity: 0.91;
+  ${({ theme }) => theme.mq.l} {
+    width: 45px;
+    height: 60px;
+    position: absolute;
+    top: unset;
+    bottom: -48px;
+    left: 79px;
+  }
+`;
+
 const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
   const [isMenuOpen, setMenuState] = useState(false);
   const { categories } = useStaticQuery(graphql`
@@ -197,15 +215,24 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
       <InnerWrapper>
         <div style={{ display: 'flex' }}>
           <Link to="/">
-            <a>
-              <Logo>
-                <StaticImage
-                  src="../../assets/images/logo.png"
-                  alt="WeedWeek"
-                />
-              </Logo>
-            </a>
+            <Logo>
+              <StaticImage
+                src="../../assets/images/logo.png"
+                alt="WeedWeek"
+                width={80}
+                height={80}
+              />
+            </Logo>
           </Link>
+          <Hesi>
+            <StaticImage
+              src="../../assets/images/hesi.png"
+              alt="Hesi"
+              width={76}
+              height={100}
+              layout="fullWidth"
+            />
+          </Hesi>
           <CheckBoxWrapper>
             <CheckBox
               id="checkbox"
@@ -225,6 +252,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
               </Category>
             ) : null
           )}
+          <Category to={`/category/uprawa`}>Uprawa</Category>
         </Categories>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Hamburger
@@ -246,6 +274,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
             </Category>
           ) : null
         )}
+        <Category to={`/category/uprawa`}>Uprawa</Category>
       </CategoriesMobile>
     </Wrapper>
   );

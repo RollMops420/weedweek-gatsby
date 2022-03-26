@@ -6,6 +6,7 @@ import Section from 'components/Section';
 import Post from 'components/PostCategory';
 import AdWrapper from 'components/Ads/AdWrapper';
 import SquareAd from 'components/Ads/SquareAd';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const CategoryPage = ({ data, pageContext: { name } }) => {
   const { adB, posts } = data;
@@ -22,6 +23,14 @@ const CategoryPage = ({ data, pageContext: { name } }) => {
         )}
       </AdWrapper>
       <Container top>
+        {name === 'Uprawa' && (
+          <a href="https://www.hesi.nl/pl?utm_source=weedweek.pl">
+            <div>
+              <h3>DZIAŁ UPRAWA POWSTAŁ DZIĘKI WSPÓŁPRACY Z HESI </h3>{' '}
+              <StaticImage src="../assets/images/hesi2.png" alt="Hesi" />
+            </div>
+          </a>
+        )}
         <Section title={name} full>
           {posts.edges.map((post) => (
             <Post key={post.node.id} post={post} />

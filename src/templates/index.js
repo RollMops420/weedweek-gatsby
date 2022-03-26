@@ -17,6 +17,7 @@ import PostsDesc from 'components/PostsDesc';
 import Products from 'components/Products';
 import PopupAd from 'components/Ads/PopupAd';
 import { StaticImage } from 'gatsby-plugin-image';
+import CalendarWebM from '../assets/images/kalendarz.webm';
 
 const ShopSection = styled(Section)`
   background-color: ${({ theme }) => theme.secondary};
@@ -67,7 +68,7 @@ const ShopLink = styled.a`
 `;
 
 const HomePage = ({ data }) => {
-  const { posts, nasiona, products, adA, adB, adC } = data;
+  const { first, posts, nasiona, products, adA, adB, adC } = data;
   const popular = posts;
   const medyczna = data.medyczna;
   const waporyzacja = data.waporyzacja;
@@ -137,15 +138,24 @@ const HomePage = ({ data }) => {
       <Container full>
         <Section title="Najnowsze" small>
           <div>
-            <Featured post={posts.edges[0]} />
+            <Featured post={first.edges[0]} />
             {/* <a href={adC.ad_fields.link}>
               <img src={adC.featuredImage.node.sourceUrl} />
             </a> */}
             <AdWrapper style={{ marginBottom: 0 }}>
-              <GifAd
+              <video
+                playsInline
+                autoPlay
+                muted
+                loop
+                style={{ width: '100%', borderRadius: 10 }}
+              >
+                <source src={CalendarWebM} type="video/webm" />
+              </video>
+              {/* <GifAd
                 href={adC.ad_fields.link}
                 source={adC.featuredImage.node.sourceUrl}
-              />
+              /> */}
             </AdWrapper>
           </div>
           <div
@@ -156,7 +166,6 @@ const HomePage = ({ data }) => {
             }}
           >
             {posts.edges.map((post, index) => {
-              if (index === 0) return null;
               if (index > 6) return null;
               return <PostSmall post={post} key={index} circle />;
             })}
@@ -288,7 +297,7 @@ const HomePage = ({ data }) => {
 
 export const pageQuery = graphql`
   query {
-    posts: allWpPost(limit: 50, sort: { order: DESC, fields: date }) {
+    first: allWpPost(limit: 1, sort: { order: DESC, fields: date }) {
       edges {
         node {
           excerpt
@@ -309,7 +318,42 @@ export const pageQuery = graphql`
             node {
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(width: 800)
+                }
+              }
+            }
+          }
+          slug
+          excerpt
+          date
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+    }
+    posts: allWpPost(skip: 1, limit: 50, sort: { order: DESC, fields: date }) {
+      edges {
+        node {
+          excerpt
+          author {
+            node {
+              firstName
+              lastName
+            }
+          }
+          title
+          categories {
+            nodes {
+              slug
+              name
+            }
+          }
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 128)
                 }
               }
             }

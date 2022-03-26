@@ -25,10 +25,12 @@ const StyledLink = styled.a`
 const Wrapper = styled.article`
   border-bottom: 2px solid ${({ theme }) => theme.primary};
   display: grid;
-  grid-template-columns: 40% 60%;
   grid-gap: 10px;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  ${({ theme }) => theme.mq.l} {
+    grid-template-columns: 30% 70%;
+  }
   &:hover {
     cursor: pointer;
   }
@@ -51,6 +53,7 @@ const Image = styled(GatsbyImage)`
   margin-right: 10px;
   width: 100%;
   border-radius: 8px;
+  height: 200px;
   ${({ circle }: { circle: boolean }) =>
     circle &&
     `

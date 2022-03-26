@@ -44,6 +44,12 @@ const Heading = styled.h4`
   }
 `;
 
+const Image = styled(GatsbyImage)`
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+`;
+
 const Desc = styled.span`
   color: ${({ theme }) => theme.color};
   font-size: 14px;
@@ -66,14 +72,17 @@ const PostsDesc = ({ posts }: Props) => {
         <Link key={post.node.slug} to={`/${post.node.slug}`}>
           <a>
             <PostWrapper>
-              {post.node.featuredImage.node.localFiile && (
-                <GatsbyImage
-                  image={getImage(
-                    post.node.featuredImage.node.localFile.childImageSharp
-                      .gatsbyImageData
-                  )}
-                />
-              )}
+              <div>
+                {post.node.featuredImage.node.localFiile && (
+                  <GatsbyImage
+                    image={
+                      post.node.featuredImage.node.localFile.childImageSharp
+                        .gatsbyImageData
+                    }
+                    alt={post.node.title}
+                  />
+                )}
+              </div>
               <div>
                 <Heading>{post.node.title}</Heading>
                 <Desc

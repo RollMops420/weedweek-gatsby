@@ -238,16 +238,23 @@ const SidebarIcon = styled.div`
 const OurClinicWrapper = styled.div`
   border-radius: 10px;
   overflow: hidden;
-  padding: 10px;
-  margin: 0 auto;
-  margin-top: 20px;
   display: none;
+  margin-top: 20px;
+  & img {
+    border-radius: 10px;
+  }
   ${({ theme }) => theme.mq.m} {
     display: block;
   }
 `;
 
 const OurClinicMobile = styled.div`
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  & img {
+    border-radius: 10px;
+  }
   ${({ theme }) => theme.mq.m} {
     display: none;
   }
