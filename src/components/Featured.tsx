@@ -24,7 +24,10 @@ const Wrapper = styled.article`
     transform: scale(1.01);
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   }
-  height: 350px;
+  height: 200px;
+  ${({ theme }) => theme.mq.l} {
+    height: 350px;
+  }
 `;
 
 const Image = styled(GatsbyImage)`

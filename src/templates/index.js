@@ -67,6 +67,12 @@ const ShopLink = styled.a`
   color: ${({ theme }) => theme.link};
 `;
 
+const StyledAdWrapper = styled(AdWrapper)`
+  ${({ theme }) => theme.mq.l} {
+    margin-bottom: 0;
+  }
+`;
+
 const HomePage = ({ data }) => {
   const { first, posts, nasiona, products, adA, adB, adC } = data;
   const popular = posts;
@@ -142,7 +148,7 @@ const HomePage = ({ data }) => {
             {/* <a href={adC.ad_fields.link}>
               <img src={adC.featuredImage.node.sourceUrl} />
             </a> */}
-            <AdWrapper style={{ marginBottom: 0 }}>
+            <StyledAdWrapper>
               <video
                 playsInline
                 autoPlay
@@ -156,7 +162,7 @@ const HomePage = ({ data }) => {
                 href={adC.ad_fields.link}
                 source={adC.featuredImage.node.sourceUrl}
               /> */}
-            </AdWrapper>
+            </StyledAdWrapper>
           </div>
           <div
             style={{
