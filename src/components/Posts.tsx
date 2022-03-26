@@ -56,11 +56,13 @@ const ImageWrapper = styled.div`
   & img {
     border-radius: 10px;
   }
+  width: 100%;
   height: 150px;
   overflow: hidden;
 `;
 
 const Image = styled(GatsbyImage)`
+  width: 100%;
   height: 100%;
   object-fit: cover;
 `;
@@ -82,6 +84,7 @@ const StyledCategory = styled(Category)`
 interface Props {
   posts: IPost[];
   isList?: boolean;
+  wide?: boolean;
 }
 
 const Post = ({ post }: any) => (
@@ -113,10 +116,12 @@ const Post = ({ post }: any) => (
   </Link>
 );
 
-const Posts = ({ posts, isList }: Props) => (
+const Posts = ({ posts, isList, wide }: Props) => (
   <Grid list={isList}>
     {posts.map((post, index) => {
-      return <Post post={post.node ? post.node : post} key={index} />;
+      return (
+        <Post post={post.node ? post.node : post} key={index} wide={wide} />
+      );
     })}
   </Grid>
 );

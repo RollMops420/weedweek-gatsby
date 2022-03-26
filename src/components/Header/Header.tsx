@@ -228,8 +228,8 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
             <StaticImage
               src="../../assets/images/hesi.png"
               alt="Hesi"
-              width={76}
-              height={100}
+              width={45}
+              height={60}
               layout="fullWidth"
             />
           </Hesi>

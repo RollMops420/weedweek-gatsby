@@ -195,6 +195,8 @@ const HomePage = ({ data }) => {
           <StaticImage
             src="../assets/images/pestkakwadrat.jpeg"
             alt="Pan Pestka"
+            width={200}
+            height={200}
           />
         </a>
         {/* <WideAd
@@ -218,7 +220,7 @@ const HomePage = ({ data }) => {
           )}
         </AdWrapper> */}
         <Section full title="Popularne">
-          <Posts posts={popular.edges.slice(0, 8)} />
+          <Posts wide posts={popular.edges.slice(0, 8)} />
         </Section>
         <ShopSection full title="Nasiona Marihuany">
           <ShopWrapper>
@@ -400,7 +402,7 @@ export const pageQuery = graphql`
         node {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(width: 512)
             }
           }
         }
@@ -455,7 +457,7 @@ export const pageQuery = graphql`
             node {
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(width: 512)
                 }
               }
             }
@@ -486,7 +488,7 @@ export const pageQuery = graphql`
             node {
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(width: 512)
                 }
               }
             }
@@ -515,7 +517,7 @@ export const pageQuery = graphql`
             node {
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(width: 256)
                 }
               }
             }
