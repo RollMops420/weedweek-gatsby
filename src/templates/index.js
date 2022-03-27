@@ -18,6 +18,7 @@ import Products from 'components/Products';
 import PopupAd from 'components/Ads/PopupAd';
 import { StaticImage } from 'gatsby-plugin-image';
 import CalendarWebM from '../assets/images/kalendarz.webm';
+import CalendarMP4 from '../assets/images/kalendarz.mp4';
 
 const ShopSection = styled(Section)`
   background-color: ${({ theme }) => theme.secondary};
@@ -175,6 +176,7 @@ const HomePage = ({ data }) => {
                   style={{ width: '100%', borderRadius: 10 }}
                 >
                   <source src={CalendarWebM} type="video/webm" />
+                  <source src={CalendarMP4} type="video/mp4" />
                 </video>
               </StyledAdWrapper>
             </a>
