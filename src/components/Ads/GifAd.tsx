@@ -36,7 +36,7 @@ const GifAd = ({ source, href }: { source: string; href: string }) => {
   console.log(source, href);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer nofollow">
+    <a href={href} target="blank">
       <Wrapper>
         <Image src={source} alt="" />
       </Wrapper>

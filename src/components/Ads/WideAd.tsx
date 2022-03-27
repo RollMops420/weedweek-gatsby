@@ -37,7 +37,7 @@ const Letter = styled.span`
 
 const WideAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer nofollow">
+    <a href={href} target="blank">
       {/* <Wrapper> */}
       <Image image={getImage(source)} alt="" />
       {/* </Wrapper> */}

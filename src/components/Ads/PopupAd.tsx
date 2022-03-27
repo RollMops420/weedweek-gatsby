@@ -99,11 +99,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       <CloseWrapper onClick={() => setVisible(false)}>
         <CloseIcon width={48} height={48} />
       </CloseWrapper>
-      <a
-        href={hrefWithRef.href}
-        target="_blank"
-        rel="noopener noreferrer nofollow"
-      >
+      <a href={hrefWithRef.href} target="blank">
         <GatsbyImage image={getImage(source)} alt="" />
       </a>
     </Wrapper>

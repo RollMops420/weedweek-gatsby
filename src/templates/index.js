@@ -73,6 +73,20 @@ const StyledAdWrapper = styled(AdWrapper)`
   }
 `;
 
+const PestkaWide = styled.div`
+  display: none;
+  ${({ theme }) => theme.mq.l} {
+    display: block;
+  }
+`;
+
+const PestkaSquare = styled.div`
+  display: block;
+  ${({ theme }) => theme.mq.l} {
+    display: none;
+  }
+`;
+
 const HomePage = ({ data }) => {
   const { first, posts, nasiona, products, adA, adB, adC } = data;
   const popular = posts;
@@ -148,21 +162,22 @@ const HomePage = ({ data }) => {
             {/* <a href={adC.ad_fields.link}>
               <img src={adC.featuredImage.node.sourceUrl} />
             </a> */}
-            <StyledAdWrapper>
-              <video
-                playsInline
-                autoPlay
-                muted
-                loop
-                style={{ width: '100%', borderRadius: 10 }}
-              >
-                <source src={CalendarWebM} type="video/webm" />
-              </video>
-              {/* <GifAd
-                href={adC.ad_fields.link}
-                source={adC.featuredImage.node.sourceUrl}
-              /> */}
-            </StyledAdWrapper>
+            <a
+              target="blank"
+              href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
+            >
+              <StyledAdWrapper>
+                <video
+                  playsInline
+                  autoPlay
+                  muted
+                  loop
+                  style={{ width: '100%', borderRadius: 10 }}
+                >
+                  <source src={CalendarWebM} type="video/webm" />
+                </video>
+              </StyledAdWrapper>
+            </a>
           </div>
           <div
             style={{
@@ -180,25 +195,50 @@ const HomePage = ({ data }) => {
         <Section full title="Produkty" style={{ paddingRight: 0 }}>
           <Products products={products.edges} />
         </Section>
-        <a
-          href="https://panpestka.pl/?utm_source=weedweek.pl"
-          style={{
-            display: 'block',
-            margin: '0 auto',
-            marginBottom: 20,
-            width: 200,
-            height: 200,
-            borderRadius: 10,
-            overflow: 'hidden',
-          }}
-        >
-          <StaticImage
-            src="../assets/images/pestkakwadrat.jpeg"
-            alt="Pan Pestka"
-            width={200}
-            height={200}
-          />
-        </a>
+        <PestkaSquare>
+          <a
+            target="blank"
+            href="https://panpestka.pl/bestsellery/?wpam_id=9"
+            style={{
+              display: 'block',
+              margin: '0 auto',
+              marginBottom: 20,
+              width: 200,
+              height: 200,
+              borderRadius: 10,
+              overflow: 'hidden',
+            }}
+          >
+            <StaticImage
+              src="../assets/images/pestkakwadrat.jpeg"
+              alt="Pan Pestka"
+              width={200}
+              height={200}
+            />
+          </a>
+        </PestkaSquare>
+        <PestkaWide>
+          <a
+            target="blank"
+            href="https://panpestka.pl/bestsellery/?wpam_id=9"
+            style={{
+              display: 'block',
+              margin: '0 auto',
+              marginBottom: 20,
+              width: 600,
+              height: 200,
+              borderRadius: 10,
+              overflow: 'hidden',
+            }}
+          >
+            <StaticImage
+              src="../assets/images/pestkawide.jpg"
+              alt="Pan Pestka"
+              width={600}
+              height={200}
+            />
+          </a>
+        </PestkaWide>
         {/* <WideAd
           href={adC.ad_fields.link}
           source={
@@ -243,7 +283,12 @@ const HomePage = ({ data }) => {
                 <h4>Kącik Ornitologiczny</h4>
                 <span>
                   Wspierany przez{' '}
-                  <ShopLink href="https://panpestka.pl/">PanPestka.pl</ShopLink>
+                  <ShopLink
+                    target="blank"
+                    href="https://panpestka.pl/bestsellery/?wpam_id=9"
+                  >
+                    PanPestka.pl
+                  </ShopLink>
                 </span>
               </ShopDesc>
             </ShopImageWrapper>

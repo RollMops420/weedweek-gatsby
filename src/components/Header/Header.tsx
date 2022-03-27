@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Hamburger from './Hamburger';
 import Menu from './Menu';
 import ShoppingSVG from '../../assets/icons/shopping-bag.svg';
-import { ICategory } from 'types/types';
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.primary};
@@ -175,15 +174,15 @@ const CheckBox = styled.input`
 
 const Hesi = styled.div`
   width: 34px;
-  height: 45px;
+  height: 48px;
   position: absolute;
   top: 40px;
   left: 60px;
   z-index: 99;
   opacity: 0.91;
   ${({ theme }) => theme.mq.l} {
-    width: 45px;
-    height: 60px;
+    width: 55px;
+    height: 78px;
     position: absolute;
     top: unset;
     bottom: -48px;
@@ -193,22 +192,6 @@ const Hesi = styled.div`
 
 const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
   const [isMenuOpen, setMenuState] = useState(false);
-  const { categories } = useStaticQuery(graphql`
-    query {
-      categories: allWpCategory(
-        sort: { fields: count, order: DESC }
-        filter: { slug: { nin: ["youtube", "polska"] } }
-        limit: 6
-      ) {
-        nodes {
-          name
-          slug
-          uri
-          count
-        }
-      }
-    }
-  `);
 
   return (
     <Wrapper>
@@ -219,17 +202,17 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
               <StaticImage
                 src="../../assets/images/logo.png"
                 alt="WeedWeek"
-                width={80}
-                height={80}
+                // width={80}
+                // height={80}
               />
             </Logo>
           </Link>
           <Hesi>
             <StaticImage
-              src="../../assets/images/hesi.png"
+              src="../../assets/images/hesipowered3.png"
               alt="Hesi"
-              width={45}
-              height={60}
+              width={55}
+              height={78}
               layout="fullWidth"
             />
           </Hesi>
@@ -245,14 +228,12 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
         </div>
         <Categories>
           <Category to={`/kliniki-konopne`}>Kliniki Konopne</Category>
-          {categories.nodes.map((category, i) =>
-            category.slug !== 'bez-kategorii' && i !== 0 ? (
-              <Category key={category.slug} to={`/category/${category.slug}`}>
-                {category.name}
-              </Category>
-            ) : null
-          )}
+          <Category to={`/category/polska`}>Polska</Category>
+          <Category to={`/category/swiat`}>Świat</Category>
+          <Category to={`/category/kronika-kryminalna`}>Kryminalne</Category>
+          <Category to={`/category/pop`}>Pop</Category>
           <Category to={`/category/uprawa`}>Uprawa</Category>
+          <Category to={`/category/nasiona-marihuany`}>Nasiona</Category>
         </Categories>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Hamburger
@@ -267,14 +248,12 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
       </InnerWrapper>
       <CategoriesMobile>
         <Category to={`/kliniki-konopne`}>Kliniki Konopne</Category>
-        {categories.nodes.map((category) =>
-          category.slug !== 'bez-kategorii' ? (
-            <Category key={category.slug} to={`/category/${category.slug}`}>
-              {category.name}
-            </Category>
-          ) : null
-        )}
+        <Category to={`/category/polska`}>Polska</Category>
+        <Category to={`/category/swiat`}>Świat</Category>
+        <Category to={`/category/kronika-kryminalna`}>Kryminalne</Category>
+        <Category to={`/category/pop`}>Pop</Category>
         <Category to={`/category/uprawa`}>Uprawa</Category>
+        <Category to={`/category/nasiona-marihuany`}>Nasiona</Category>
       </CategoriesMobile>
     </Wrapper>
   );

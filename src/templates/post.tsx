@@ -606,7 +606,8 @@ const PostPage = ({ data }: Props) => {
           </div>
           <RightWrapperMobile>
             <a
-              href="https://panpestka.pl/?utm_source=weedweek.pl"
+              target="blank"
+              href="https://panpestka.pl/bestsellery/?wpam_id=9"
               style={{
                 display: 'block',
                 margin: '20px 0',
@@ -656,7 +657,10 @@ const PostPage = ({ data }: Props) => {
                       <h4>Kącik Ornitologiczny</h4>
                       <span>
                         Wspierany przez{' '}
-                        <ShopLink href="https://panpestka.pl/?utm_source=weedweek.pl">
+                        <ShopLink
+                          target="blank"
+                          href="https://panpestka.pl/bestsellery/?wpam_id=9"
+                        >
                           PanPestka.pl
                         </ShopLink>
                       </span>
@@ -718,7 +722,8 @@ const PostPage = ({ data }: Props) => {
             </Sticky>
           </StickySection>
           <a
-            href="https://panpestka.pl/?utm_source=weedweek.pl"
+            target="blank"
+            href="https://panpestka.pl/bestsellery/?wpam_id=9"
             style={{
               display: 'block',
               margin: '20px 0',
@@ -753,7 +758,10 @@ const PostPage = ({ data }: Props) => {
                     <h4>Kącik Ornitologiczny</h4>
                     <span>
                       Wspierany przez{' '}
-                      <ShopLink href="https://panpestka.pl/">
+                      <ShopLink
+                        target="blank"
+                        href="https://panpestka.pl/bestsellery/?wpam_id=9"
+                      >
                         PanPestka.pl
                       </ShopLink>
                     </span>

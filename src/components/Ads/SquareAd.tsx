@@ -34,7 +34,7 @@ const Letter = styled.span`
 
 const SquareAd = ({ source, href }: { source: string; href: string }) => {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer nofollow">
+    <a href={href} target="blank">
       {/* <Wrapper> */}
       <Image image={getImage(source)} alt="" />
       {/* <Letter>B</Letter> */}
