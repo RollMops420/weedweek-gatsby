@@ -227,8 +227,8 @@ const HomePage = ({ data }) => {
               display: 'block',
               margin: '0 auto',
               marginBottom: 20,
-              width: 600,
-              height: 200,
+              maxWidth: 1200,
+              maxHeight: 400,
               borderRadius: 10,
               overflow: 'hidden',
             }}
@@ -236,8 +236,8 @@ const HomePage = ({ data }) => {
             <StaticImage
               src="../assets/images/pestkawide.jpg"
               alt="Pan Pestka"
-              width={600}
-              height={200}
+              width={1200}
+              height={400}
             />
           </a>
         </PestkaWide>
