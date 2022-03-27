@@ -200,8 +200,9 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
           <Link to="/">
             <Logo>
               <StaticImage
-                src="../../assets/images/logo.png"
+                src="../../assets/images/logo_small.png"
                 alt="WeedWeek"
+                placeholder="blurred"
                 // width={80}
                 // height={80}
               />
@@ -209,10 +210,11 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
           </Link>
           <Hesi>
             <StaticImage
-              src="../../assets/images/hesipowered3.png"
+              src="../../assets/images/hesipowered.png"
               alt="Hesi"
               width={55}
               height={78}
+              placeholder="blurred"
               layout="fullWidth"
             />
           </Hesi>
