@@ -55,6 +55,7 @@ const Content = styled.div`
   }
   & h2 {
     margin: 20px 0 10px 0;
+    padding: 0;
     font-size: ${({ theme }) => theme.font.size.s};
     ${({ theme }) => theme.mq.l} {
       font-size: ${({ theme }) => theme.font.size.m};
