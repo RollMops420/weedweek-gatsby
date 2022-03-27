@@ -233,7 +233,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
           <Category to={`/category/polska`}>Polska</Category>
           <Category to={`/category/swiat`}>Świat</Category>
           <Category to={`/category/kronika-kryminalna`}>Kryminalne</Category>
-          <Category to={`/category/pop`}>Pop</Category>
+          {/* <Category to={`/category/pop`}>Pop</Category> */}
           <Category to={`/category/uprawa`}>Uprawa</Category>
           <Category to={`/category/nasiona-marihuany`}>Nasiona</Category>
         </Categories>
@@ -253,7 +253,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
         <Category to={`/category/polska`}>Polska</Category>
         <Category to={`/category/swiat`}>Świat</Category>
         <Category to={`/category/kronika-kryminalna`}>Kryminalne</Category>
-        <Category to={`/category/pop`}>Pop</Category>
+        {/* <Category to={`/category/pop`}>Pop</Category> */}
         <Category to={`/category/uprawa`}>Uprawa</Category>
         <Category to={`/category/nasiona-marihuany`}>Nasiona</Category>
       </CategoriesMobile>
