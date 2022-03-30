@@ -408,7 +408,7 @@ const authorization =
 
 const PostPage = ({ data }: Props) => {
   const { adB, adC, adE, post, newests, nasiona, products } = data;
-  const related = post ? post.related_posts?.nodes : [];
+  // const related = post ? post.related_posts?.nodes : [];
   const [bannerVisible, setBanner] = useState(0);
   const [views, setViews] = useState(null);
   const [firstPost, setFirstPost] = useState<Post | null>(null);
@@ -624,14 +624,14 @@ const PostPage = ({ data }: Props) => {
               <Sticky>
                 <div>
                   <h4>Powiązane</h4>
-                  {related && related.length
+                  {/* {related && related.length
                     ? related.map((post, index) => {
                         if (index === 0) return null;
                         return (
                           <PostSmall post={{ node: post }} key={index} circle />
                         );
                       })
-                    : null}
+                    : null} */}
                 </div>
               </Sticky>
             </StickySection>
@@ -843,30 +843,30 @@ export const pageQuery = graphql`
         opengraphType
         title
       }
-      related_posts {
-        nodes {
-          title
-          slug
-          content
-          categories {
-            nodes {
-              name
-              slug
-            }
-          }
-          date
-          featuredImage {
-            node {
-              altText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-            }
-          }
-        }
-      }
+      # related_posts {
+      #   nodes {
+      #     title
+      #     slug
+      #     content
+      #     categories {
+      #       nodes {
+      #         name
+      #         slug
+      #       }
+      #     }
+      #     date
+      #     featuredImage {
+      #       node {
+      #         altText
+      #         localFile {
+      #           childImageSharp {
+      #             gatsbyImageData
+      #           }
+      #         }
+      #       }
+      #     }
+      #   }
+      # }
     }
     previous: wpPost(id: { eq: $previousPostId }) {
       uri
