@@ -13,21 +13,21 @@ const HesiSquare = () => {
 
   if (visible === 0)
     return (
-      <StyledA>
+      <StyledA href="https://www.hesi.nl/pl?utm_source=weedweek.pl">
         <StaticImage src="../../assets/images/hesisquare1.png" alt="Hesi" />
       </StyledA>
     );
 
   if (visible === 1)
     return (
-      <StyledA>
+      <StyledA href="https://www.hesi.nl/pl?utm_source=weedweek.pl">
         <StaticImage src="../../assets/images/hesisquare2.png" alt="Hesi" />
       </StyledA>
     );
 
   if (visible === 2)
     return (
-      <StyledA>
+      <StyledA href="https://www.hesi.nl/pl?utm_source=weedweek.pl">
         <StaticImage src="../../assets/images/hesisquare3.png" alt="Hesi" />
       </StyledA>
     );

@@ -252,41 +252,38 @@ const RenderPost = ({
   adE: any;
 }) => (
   <div>
-    <AdWrapper>
-      {/* <GifAd
-        href={adC.ad_fields.link}
-        source={adC.featuredImage.node.sourceUrl}
-      /> */}
-      <a
-        href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
-        style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
-        target="blank"
-      >
-        <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
-      </a>
-      {/* <WideAd
-        href={adC.ad_fields.link}
-        source={
-          adC.featuredImage.node.localFile.childImageSharp.gatsbyImageData
-        }
-      /> */}
-      {/* {bannerVisible === 0 && adC.featuredImage && (
-        <WideAd
+    {adC.featuredImage && (
+      <AdWrapper style={{ display: bannerVisible === 0 ? 'block' : 'none' }}>
+        <GifAd
           href={adC.ad_fields.link}
-          source={
-            adC.featuredImage.node.localFile.childImageSharp.gatsbyImageData
-          }
+          source={adC.featuredImage.node.sourceUrl}
         />
-      )}
-      {bannerVisible === 1 && adE.featuredImage && (
-        <WideAd
-          href={adE.ad_fields.link}
-          source={
-            adE.featuredImage.node.localFile.childImageSharp.gatsbyImageData
-          }
-        />
-      )} */}
-    </AdWrapper>
+      </AdWrapper>
+    )}
+    {adE.featuredImage && (
+      <AdWrapper
+        style={{
+          display: bannerVisible === 1 ? 'block' : 'none',
+        }}
+      >
+        <a
+          href="https://vaporshop.pl/pl/117-420vape?utm_source=weedweek.pl"
+          style={{
+            display: 'block',
+            width: '100%',
+            borderRadius: 10,
+            overflow: 'hidden',
+          }}
+          target="blank"
+        >
+          <StaticImage
+            layout="fullWidth"
+            src="../assets/images/420vape.png"
+            alt="420Vape"
+          />
+        </a>
+      </AdWrapper>
+    )}
     <Row>
       {post.categories.nodes.map(({ name, slug }) => (
         <StyledCategory key={slug} slug={slug}>
@@ -350,7 +347,26 @@ const RenderPost = ({
     {post.content && (
       <Content
         dangerouslySetInnerHTML={{
-          __html: post.content.substring(0, post.content.indexOf('</h3>')),
+          __html: post.content.substring(0, post.content.indexOf('</strong>')),
+        }}
+      />
+    )}
+    <AdWrapper>
+      <a
+        href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+        style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
+        target="blank"
+      >
+        <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
+      </a>
+    </AdWrapper>
+    {post.content && (
+      <Content
+        dangerouslySetInnerHTML={{
+          __html: post.content.substring(
+            post.content.indexOf('</strong>'),
+            post.content.indexOf('</h3>')
+          ),
         }}
       />
     )}
@@ -365,33 +381,22 @@ const RenderPost = ({
           }}
         />
         {/* <Products products={products.edges} /> */}
-        <a
-          href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
-          style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
-          target="blank"
-        >
-          <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
-        </a>
-        {/* <GifAd
-          href={adC.ad_fields.link}
-          source={adC.featuredImage.node.sourceUrl}
-        /> */}
-        {/* {bannerVisible === 0 && adC.featuredImage && (
-            <AdWrapper>
-              <WideAd
-                href={adC.ad_fields.link}
-                source={adC.featuredImage.node.sourceUrl}
-              />
-            </AdWrapper>
-          )}
-          {bannerVisible === 1 && adE.featuredImage && (
-            <AdWrapper>
-              <WideAd
-                href={adE.ad_fields.link}
-                source={adE.featuredImage.node.sourceUrl}
-              />
-            </AdWrapper>
-          )} */}
+        {bannerVisible === 0 && adC.featuredImage && (
+          <AdWrapper>
+            <GifAd
+              href={adC.ad_fields.link}
+              source={adC.featuredImage.node.sourceUrl}
+            />
+          </AdWrapper>
+        )}
+        {bannerVisible === 1 && adE.featuredImage && (
+          <AdWrapper>
+            <WideAd
+              href={adE.ad_fields.link}
+              source={adE.featuredImage.node.sourceUrl}
+            />
+          </AdWrapper>
+        )}
         <Content
           dangerouslySetInnerHTML={{
             __html: post.content.substring(

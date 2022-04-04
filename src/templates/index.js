@@ -83,6 +83,7 @@ const PestkaWide = styled.div`
 `;
 
 const PestkaSquare = styled.div`
+  margin-bottom: 10px;
   display: block;
   ${({ theme }) => theme.mq.l} {
     display: none;
@@ -161,17 +162,26 @@ const HomePage = ({ data }) => {
         <Section title="Najnowsze" small>
           <div>
             <Featured post={first.edges[0]} />
+            <PestkaSquare>
+              <HesiSquare />
+            </PestkaSquare>
             <a
               style={{ width: '100%', borderRadius: 10, overflow: 'hidden' }}
               href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
               target="blank"
             >
-              <StaticImage
-                src="../assets/images/hesiwide.png"
-                alt="Hesi"
-                width={1200}
-                height={400}
-              />
+              <PestkaWide
+                style={{ width: '100%', borderRadius: 10, overflow: 'hidden' }}
+                href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+                target="blank"
+              >
+                <StaticImage
+                  src="../assets/images/hesiwide.png"
+                  alt="Hesi"
+                  width={1200}
+                  height={400}
+                />
+              </PestkaWide>
             </a>
             {/* <a
               target="blank"

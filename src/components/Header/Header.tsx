@@ -177,7 +177,7 @@ const Hesi = styled.div`
   height: 48px;
   position: absolute;
   top: 58px;
-  left: 15px;
+  left: 19px;
   z-index: 99;
   opacity: 0.91;
   ${({ theme }) => theme.mq.l} {
@@ -186,7 +186,7 @@ const Hesi = styled.div`
     position: absolute;
     top: unset;
     bottom: -67px;
-    left: 35px;
+    left: 36px;
   }
 `;
 
