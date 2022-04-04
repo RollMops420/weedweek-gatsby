@@ -19,6 +19,7 @@ import PopupAd from 'components/Ads/PopupAd';
 import { StaticImage } from 'gatsby-plugin-image';
 import CalendarWebM from '../assets/images/kalendarz.webm';
 import CalendarMP4 from '../assets/images/kalendarz.mp4';
+import HesiSquare from 'components/Ads/HesiSquare';
 
 const ShopSection = styled(Section)`
   background-color: ${({ theme }) => theme.secondary};
@@ -160,10 +161,19 @@ const HomePage = ({ data }) => {
         <Section title="Najnowsze" small>
           <div>
             <Featured post={first.edges[0]} />
-            {/* <a href={adC.ad_fields.link}>
-              <img src={adC.featuredImage.node.sourceUrl} />
-            </a> */}
             <a
+              style={{ width: '100%', borderRadius: 10, overflow: 'hidden' }}
+              href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+              target="blank"
+            >
+              <StaticImage
+                src="../assets/images/hesiwide.png"
+                alt="Hesi"
+                width={1200}
+                height={400}
+              />
+            </a>
+            {/* <a
               target="blank"
               href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
             >
@@ -179,7 +189,7 @@ const HomePage = ({ data }) => {
                   <source src={CalendarMP4} type="video/mp4" />
                 </video>
               </StyledAdWrapper>
-            </a>
+            </a> */}
           </div>
           <div
             style={{
@@ -304,6 +314,16 @@ const HomePage = ({ data }) => {
           </ShopWrapper>
           <Posts posts={nasiona.edges.slice(0, 4)} />
         </ShopSection>
+        <div
+          style={{
+            width: 256,
+            height: 256,
+            margin: '0 auto',
+            marginBottom: 20,
+          }}
+        >
+          <HesiSquare />
+        </div>
         {/* <AdWrapper square>
           {adB.featuredImage && (
             <SquareAd

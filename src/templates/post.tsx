@@ -26,6 +26,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import Disqus from '../components/Disqus';
 import { graphql } from 'gatsby';
 import Products from 'components/Products';
+import HesiSquare from 'components/Ads/HesiSquare';
 
 dayjs.locale('pl');
 
@@ -174,7 +175,7 @@ const Right = styled.div`
 
 const StickySection = styled.div`
   ${({ theme }) => theme.mq.m} {
-    height: 1000px;
+    height: 700px;
   }
 `;
 
@@ -252,10 +253,17 @@ const RenderPost = ({
 }) => (
   <div>
     <AdWrapper>
-      <GifAd
+      {/* <GifAd
         href={adC.ad_fields.link}
         source={adC.featuredImage.node.sourceUrl}
-      />
+      /> */}
+      <a
+        href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+        style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
+        target="blank"
+      >
+        <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
+      </a>
       {/* <WideAd
         href={adC.ad_fields.link}
         source={
@@ -357,10 +365,17 @@ const RenderPost = ({
           }}
         />
         {/* <Products products={products.edges} /> */}
-        <GifAd
+        <a
+          href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+          style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
+          target="blank"
+        >
+          <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
+        </a>
+        {/* <GifAd
           href={adC.ad_fields.link}
           source={adC.featuredImage.node.sourceUrl}
-        />
+        /> */}
         {/* {bannerVisible === 0 && adC.featuredImage && (
             <AdWrapper>
               <WideAd
@@ -676,6 +691,9 @@ const PostPage = ({ data }: Props) => {
                 </div>
               </Sticky>
             </ShopSection>
+            <Sticky>
+              <HesiSquare />
+            </Sticky>
             {/* <Sticky>
                   {adB.featuredImage && (
                     <SquareAd
@@ -777,6 +795,9 @@ const PostPage = ({ data }: Props) => {
               </div>
             </Sticky>
           </ShopSection>
+          <Sticky>
+            <HesiSquare />
+          </Sticky>
         </RightWrapper>
       </Section>
       <Section full id="testidhah">

@@ -333,7 +333,7 @@ const ClinicsPage = ({ data }) => {
         <Container>
           <OurClinicWrapper>
             <StaticImage
-              src="../assets/images/klinika.png"
+              src="../assets/images/klinika.jpg"
               alt="Klinika"
               layout="fullWidth"
             />

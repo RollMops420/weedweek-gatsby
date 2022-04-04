@@ -208,16 +208,21 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
               />
             </Logo>
           </Link>
-          <Hesi>
-            <StaticImage
-              src="../../assets/images/hesipowered.png"
-              alt="Hesi"
-              width={55}
-              height={78}
-              placeholder="blurred"
-              layout="fullWidth"
-            />
-          </Hesi>
+          <a
+            href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+            target="blank"
+          >
+            <Hesi>
+              <StaticImage
+                src="../../assets/images/hesipowered.png"
+                alt="Hesi"
+                width={55}
+                height={78}
+                placeholder="blurred"
+                layout="fullWidth"
+              />
+            </Hesi>
+          </a>
           <CheckBoxWrapper>
             <CheckBox
               id="checkbox"

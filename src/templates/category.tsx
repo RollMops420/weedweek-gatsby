@@ -23,11 +23,23 @@ const CategoryPage = ({ data, pageContext: { name } }) => {
         )}
       </AdWrapper>
       <Container top>
+        {name !== 'Uprawa' && (
+          <a
+            href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+            style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
+            target="blank"
+          >
+            <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
+          </a>
+        )}
         {name === 'Uprawa' && (
-          <a href="https://www.hesi.nl/pl?utm_source=weedweek.pl">
+          <a
+            href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+            target="blank"
+          >
             <div>
               <h3>DZIAŁ UPRAWA POWSTAŁ DZIĘKI WSPÓŁPRACY Z HESI </h3>{' '}
-              <StaticImage src="../assets/images/hesi2.png" alt="Hesi" />
+              <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
             </div>
           </a>
         )}
