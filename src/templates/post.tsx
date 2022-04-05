@@ -344,7 +344,7 @@ const RenderPost = ({
         // </div>
       )}
     </ImageWrapper>
-    {post.content && (
+    {/* {post.content && (
       <Content
         dangerouslySetInnerHTML={{
           __html: post.content.substring(0, post.content.indexOf('</strong>')),
@@ -359,12 +359,12 @@ const RenderPost = ({
       >
         <StaticImage src="../assets/images/hesiwide.png" alt="Hesi" />
       </a>
-    </AdWrapper>
+    </AdWrapper> */}
     {post.content && (
       <Content
         dangerouslySetInnerHTML={{
           __html: post.content.substring(
-            post.content.indexOf('</strong>'),
+            0
             post.content.indexOf('</h3>')
           ),
         }}
