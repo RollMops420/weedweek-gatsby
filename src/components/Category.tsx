@@ -30,9 +30,9 @@ const Wrapper = styled.div`
 `;
 
 const Category = (props: Props) => (
-  <Link to={`/category/${props.slug}`}>
+  <StyledLink to={`/category/${props.slug}`}>
     <Wrapper {...props} />
-  </Link>
+  </StyledLink>
 );
 
 export default Category;

@@ -329,11 +329,14 @@ const ClinicsPage = ({ data }) => {
           </MapContainer>
         </Container>
       </Content> */}
-      <a href="">
+      <a
+        href="https://konopnaklinika.pl/?utm_source=weedweek.pl"
+        target="blank"
+      >
         <Container>
           <OurClinicWrapper>
             <StaticImage
-              src="../assets/images/klinika.jpg"
+              src="../assets/images/klinikawide.jpg"
               alt="Klinika"
               layout="fullWidth"
             />
