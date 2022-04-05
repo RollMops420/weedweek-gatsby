@@ -363,10 +363,7 @@ const RenderPost = ({
     {post.content && (
       <Content
         dangerouslySetInnerHTML={{
-          __html: post.content.substring(
-            0
-            post.content.indexOf('</h3>')
-          ),
+          __html: post.content.substring(0, post.content.indexOf('</h3>')),
         }}
       />
     )}
@@ -377,7 +374,7 @@ const RenderPost = ({
             __html: post.content.substring(
               post.content.indexOf('</h3>'),
               post.content.lastIndexOf('<strong>')
-            )
+            ),
           }}
         />
         {/* <Products products={products.edges} /> */}
