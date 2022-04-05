@@ -379,20 +379,38 @@ const RenderPost = ({
         />
         {/* <Products products={products.edges} /> */}
 
-        {bannerVisible === 0 && adC.featuredImage && (
-          <AdWrapper>
+        {adC.featuredImage && (
+          <AdWrapper
+            style={{ display: bannerVisible === 0 ? 'block' : 'none' }}
+          >
             <GifAd
               href={adC.ad_fields.link}
               source={adC.featuredImage.node.sourceUrl}
             />
           </AdWrapper>
         )}
-        {bannerVisible === 1 && adE.featuredImage && (
-          <AdWrapper>
-            <WideAd
-              href={adE.ad_fields.link}
-              source={adE.featuredImage.node.sourceUrl}
-            />
+        {adE.featuredImage && (
+          <AdWrapper
+            style={{
+              display: bannerVisible === 1 ? 'block' : 'none',
+            }}
+          >
+            <a
+              href="https://vaporshop.pl/pl/117-420vape?utm_source=weedweek.pl"
+              style={{
+                display: 'block',
+                width: '100%',
+                borderRadius: 10,
+                overflow: 'hidden',
+              }}
+              target="blank"
+            >
+              <StaticImage
+                layout="fullWidth"
+                src="../assets/images/420vape.png"
+                alt="420Vape"
+              />
+            </a>
           </AdWrapper>
         )}
         <Content
