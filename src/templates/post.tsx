@@ -377,11 +377,11 @@ const RenderPost = ({
             __html: post.content.substring(
               post.content.indexOf('</h3>'),
               post.content.lastIndexOf('<strong>')
-            ),
+            )
           }}
         />
         {/* <Products products={products.edges} /> */}
-        
+
         {bannerVisible === 0 && adC.featuredImage && (
           <AdWrapper>
             <GifAd
