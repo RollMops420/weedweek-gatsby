@@ -27,6 +27,8 @@ import Disqus from '../components/Disqus';
 import { graphql } from 'gatsby';
 import Products from 'components/Products';
 import HesiSquare from 'components/Ads/HesiSquare';
+import CalendarWebM from '../assets/images/kalendarz.webm';
+import CalendarMP4 from '../assets/images/kalendarz.mp4';
 
 dayjs.locale('pl');
 
@@ -254,10 +256,21 @@ const RenderPost = ({
   <div>
     {adC.featuredImage && (
       <AdWrapper style={{ display: bannerVisible === 0 ? 'block' : 'none' }}>
-        <GifAd
-          href={adC.ad_fields.link}
-          source={adC.featuredImage.node.sourceUrl}
-        />
+        <a
+          target="blank"
+          href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
+        >
+          <video
+            playsInline
+            autoPlay
+            muted
+            loop
+            style={{ width: '100%', borderRadius: 10 }}
+          >
+            <source src={CalendarWebM} type="video/webm" />
+            <source src={CalendarMP4} type="video/mp4" />
+          </video>
+        </a>
       </AdWrapper>
     )}
     {adE.featuredImage && (
@@ -279,6 +292,7 @@ const RenderPost = ({
           <StaticImage
             layout="fullWidth"
             src="../assets/images/420vape.png"
+            aspectRatio={2.62}
             alt="420Vape"
           />
         </a>
@@ -379,10 +393,21 @@ const RenderPost = ({
           <AdWrapper
             style={{ display: bannerVisible === 0 ? 'block' : 'none' }}
           >
-            <GifAd
-              href={adC.ad_fields.link}
-              source={adC.featuredImage.node.sourceUrl}
-            />
+            <a
+              target="blank"
+              href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
+            >
+              <video
+                playsInline
+                autoPlay
+                muted
+                loop
+                style={{ width: '100%', borderRadius: 10 }}
+              >
+                <source src={CalendarWebM} type="video/webm" />
+                <source src={CalendarMP4} type="video/mp4" />
+              </video>
+            </a>
           </AdWrapper>
         )}
         {adE.featuredImage && (
@@ -404,6 +429,7 @@ const RenderPost = ({
               <StaticImage
                 layout="fullWidth"
                 src="../assets/images/420vape.png"
+                aspectRatio={2.62}
                 alt="420Vape"
               />
             </a>
@@ -602,7 +628,7 @@ const PostPage = ({ data }: Props) => {
 
   useInterval(() => {
     setBanner((prevState) => (prevState ? 0 : 1));
-  }, 3000);
+  }, 10000);
 
   if (!post) return null;
 

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import CloseIcon from 'assets/icons/close';
+import CalendarWebM from '../../assets/images/kalendarz-kwadrat.webm';
+import CalendarMP4 from '../../assets/images/kalendarz-kwadrat.mp4';
 
 interface WrapperProps {
   visible?: boolean;
@@ -65,15 +67,15 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
 
   useEffect(() => {
     const showTimeout = setTimeout(() => {
-      let found = localStorage.getItem(`popup-herbata-${href}`);
+      let found = localStorage.getItem(`popup-calendar-${href}`);
       if (!found) {
         setVisible(true);
-        localStorage.setItem(`popup-herbata-${href}`, '0');
+        localStorage.setItem(`popup-calendar-${href}`, '0');
       }
       if (found && Number(found) < 3) {
         setVisible(true);
         localStorage.setItem(
-          `popup-herbata-${href}`,
+          `popup-calendar-${href}`,
           (Number(found) + 1).toString()
         );
       }
@@ -99,8 +101,23 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       <CloseWrapper onClick={() => setVisible(false)}>
         <CloseIcon width={48} height={48} />
       </CloseWrapper>
-      <a href={hrefWithRef.href} target="blank">
+      {/* <a href={hrefWithRef.href} target="blank">
         <GatsbyImage image={getImage(source)} alt="" />
+      </a> */}
+      <a
+        target="blank"
+        href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
+      >
+        <video
+          playsInline
+          autoPlay
+          muted
+          loop
+          style={{ width: '100%', borderRadius: 10 }}
+        >
+          <source src={CalendarWebM} type="video/webm" />
+          <source src={CalendarMP4} type="video/mp4" />
+        </video>
       </a>
     </Wrapper>
   );
