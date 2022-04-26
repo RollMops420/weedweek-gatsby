@@ -8,6 +8,7 @@ module.exports = {
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-typescript',
+    'gatsby-plugin-robots-txt',
     {
       resolve: 'gatsby-source-wordpress',
       options: {
