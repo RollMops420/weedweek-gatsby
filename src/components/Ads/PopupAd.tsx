@@ -103,9 +103,9 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       <CloseWrapper onClick={() => setVisible(false)}>
         <CloseIcon width={48} height={48} />
       </CloseWrapper>
-      {/* <a href={hrefWithRef.href} target="blank">
+      <a href={hrefWithRef.href} target="blank">
         <GatsbyImage image={getImage(source)} alt="" />
-      </a> */}
+      </a>
       {/* <a target="blank" href="https://www.youtube.com/watch?v=pxxRQX7nyxw">
         <video
           playsInline
