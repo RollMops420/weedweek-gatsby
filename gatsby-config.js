@@ -14,9 +14,9 @@ module.exports = {
       options: {
         url: process.env.WPGRAPHQL_URL || 'https://admin.weedweek.pl/graphql/',
         schema: {
-          perPage: 50, // currently set to 100
-          requestConcurrency: 5, // currently set to 15
-          previewRequestConcurrency: 5, // currently set to 5
+          perPage: 20, // currently set to 100
+          requestConcurrency: 4, // currently set to 15
+          previewRequestConcurrency: 4, // currently set to 5
           timeout: 60000,
         },
         develop: {
