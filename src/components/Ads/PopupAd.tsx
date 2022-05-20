@@ -106,7 +106,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       {/* <a href={hrefWithRef.href} target="blank">
         <GatsbyImage image={getImage(source)} alt="" />
       </a> */}
-      <a target="blank" href="https://www.youtube.com/watch?v=pxxRQX7nyxw">
+      {/* <a target="blank" href="https://www.youtube.com/watch?v=pxxRQX7nyxw">
         <video
           playsInline
           autoPlay
@@ -117,7 +117,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
           <source src={nowyKanalWebM} type="video/webm" />
           <source src={nowyKanalMP4} type="video/mp4" />
         </video>
-      </a>
+      </a> */}
     </Wrapper>
   );
 };
