@@ -383,8 +383,9 @@ const ClinicsPage = ({ data }) => {
           </Link> */}
           {/* <RecommendedClinics> */}
           <Recommended>Polecane kliniki</Recommended>
+          {console.log(clinics)}
           <ClinicsWide list>
-            {clinics.slice(1, 4).map((node, i) => {
+            {clinics.slice(0, 3).map((node, i) => {
               const clinic = node.node;
               return (
                 <ClinicWrapper key={i} secondary>
@@ -428,7 +429,7 @@ const ClinicsPage = ({ data }) => {
         </Container>
         <Section full>
           <ClinicsWide list>
-            {clinics.slice(5, 999).map((node, i) => {
+            {clinics.slice(4, 999).map((node, i) => {
               const clinic = node.node;
               return (
                 <ClinicWrapper key={i} secondary>
