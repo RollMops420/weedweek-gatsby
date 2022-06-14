@@ -67,24 +67,24 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
   const hrefWithRef = new URL(href);
   hrefWithRef.searchParams.append('utm_source', 'weedweek.pl');
 
-  useEffect(() => {
-    const showTimeout = setTimeout(() => {
-      let found = localStorage.getItem(`popup-nowykanal-${href}`);
-      if (!found) {
-        setVisible(true);
-        localStorage.setItem(`popup-nowykanal-${href}`, '0');
-      }
-      if (found && Number(found) < 3) {
-        setVisible(true);
-        localStorage.setItem(
-          `popup-nowykanal-${href}`,
-          (Number(found) + 1).toString()
-        );
-      }
-    }, 5000);
+  // useEffect(() => {
+  //   const showTimeout = setTimeout(() => {
+  //     let found = localStorage.getItem(`popup-nowykanal-${href}`);
+  //     if (!found) {
+  //       setVisible(true);
+  //       localStorage.setItem(`popup-nowykanal-${href}`, '0');
+  //     }
+  //     if (found && Number(found) < 3) {
+  //       setVisible(true);
+  //       localStorage.setItem(
+  //         `popup-nowykanal-${href}`,
+  //         (Number(found) + 1).toString()
+  //       );
+  //     }
+  //   }, 5000);
 
-    return () => clearTimeout(showTimeout);
-  }, []);
+  //   return () => clearTimeout(showTimeout);
+  // }, []);
 
   // useEffect(() => {
   //   const changeInterval = setInterval(() => {
