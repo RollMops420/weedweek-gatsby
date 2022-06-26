@@ -67,24 +67,24 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
   const hrefWithRef = new URL(href);
   hrefWithRef.searchParams.append('utm_source', 'weedweek.pl');
 
-  // useEffect(() => {
-  //   const showTimeout = setTimeout(() => {
-  //     let found = localStorage.getItem(`popup-nowykanal-${href}`);
-  //     if (!found) {
-  //       setVisible(true);
-  //       localStorage.setItem(`popup-nowykanal-${href}`, '0');
-  //     }
-  //     if (found && Number(found) < 3) {
-  //       setVisible(true);
-  //       localStorage.setItem(
-  //         `popup-nowykanal-${href}`,
-  //         (Number(found) + 1).toString()
-  //       );
-  //     }
-  //   }, 5000);
+  useEffect(() => {
+    const showTimeout = setTimeout(() => {
+      let found = localStorage.getItem(`popup-nowykanal-${href}`);
+      if (!found) {
+        setVisible(true);
+        localStorage.setItem(`popup-nowykanal-${href}`, '0');
+      }
+      if (found && Number(found) < 3) {
+        setVisible(true);
+        localStorage.setItem(
+          `popup-nowykanal-${href}`,
+          (Number(found) + 1).toString()
+        );
+      }
+    }, 5000);
 
-  //   return () => clearTimeout(showTimeout);
-  // }, []);
+    return () => clearTimeout(showTimeout);
+  }, []);
 
   // useEffect(() => {
   //   const changeInterval = setInterval(() => {
@@ -103,10 +103,10 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       <CloseWrapper onClick={() => setVisible(false)}>
         <CloseIcon width={48} height={48} />
       </CloseWrapper>
-      <a href={hrefWithRef.href} target="blank">
+      {/* <a href={hrefWithRef.href} target="blank">
         <GatsbyImage image={getImage(source)} alt="" />
-      </a>
-      {/* <a target="blank" href="https://www.youtube.com/watch?v=pxxRQX7nyxw">
+      </a> */}
+      <a target="blank" href="https://www.youtube.com/watch?v=pxxRQX7nyxw">
         <video
           playsInline
           autoPlay
@@ -117,7 +117,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
           <source src={nowyKanalWebM} type="video/webm" />
           <source src={nowyKanalMP4} type="video/mp4" />
         </video>
-      </a> */}
+      </a>
     </Wrapper>
   );
 };
