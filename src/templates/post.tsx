@@ -257,19 +257,21 @@ const RenderPost = ({
     {adC.featuredImage && (
       <AdWrapper style={{ display: bannerVisible === 0 ? 'block' : 'none' }}>
         <a
+          href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
+          style={{
+            display: 'block',
+            width: '100%',
+            borderRadius: 10,
+            overflow: 'hidden',
+          }}
           target="blank"
-          href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
         >
-          <video
-            playsInline
-            autoPlay
-            muted
-            loop
-            style={{ width: '100%', borderRadius: 10 }}
-          >
-            <source src={CalendarWebM} type="video/webm" />
-            <source src={CalendarMP4} type="video/mp4" />
-          </video>
+          <StaticImage
+            layout="fullWidth"
+            src="../assets/images/hesiadc.png"
+            aspectRatio={3.5}
+            alt="Hesi"
+          />
         </a>
       </AdWrapper>
     )}
@@ -280,7 +282,7 @@ const RenderPost = ({
         }}
       >
         <a
-          href="https://vaporshop.pl/pl/117-420vape?utm_source=weedweek.pl"
+          href="https://vaporshop.pl/pl/211-420vapevape?utm_source=weedweek.pl"
           style={{
             display: 'block',
             width: '100%',
@@ -292,7 +294,7 @@ const RenderPost = ({
           <StaticImage
             layout="fullWidth"
             src="../assets/images/420vape.png"
-            aspectRatio={2.62}
+            aspectRatio={3.5}
             alt="420Vape"
           />
         </a>
@@ -394,19 +396,21 @@ const RenderPost = ({
             style={{ display: bannerVisible === 0 ? 'block' : 'none' }}
           >
             <a
+              href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
+              style={{
+                display: 'block',
+                width: '100%',
+                borderRadius: 10,
+                overflow: 'hidden',
+              }}
               target="blank"
-              href="https://rollmops.pl/rollmops-2/420-calendar-2022?utm_source=weedweek.pl"
             >
-              <video
-                playsInline
-                autoPlay
-                muted
-                loop
-                style={{ width: '100%', borderRadius: 10 }}
-              >
-                <source src={CalendarWebM} type="video/webm" />
-                <source src={CalendarMP4} type="video/mp4" />
-              </video>
+              <StaticImage
+                layout="fullWidth"
+                src="../assets/images/hesiadc.png"
+                aspectRatio={3.5}
+                alt="Hesi"
+              />
             </a>
           </AdWrapper>
         )}
@@ -417,7 +421,7 @@ const RenderPost = ({
             }}
           >
             <a
-              href="https://vaporshop.pl/pl/117-420vape?utm_source=weedweek.pl"
+              href="https://vaporshop.pl/pl/211-420vape?utm_source=weedweek.pl"
               style={{
                 display: 'block',
                 width: '100%',
@@ -429,7 +433,7 @@ const RenderPost = ({
               <StaticImage
                 layout="fullWidth"
                 src="../assets/images/420vape.png"
-                aspectRatio={2.62}
+                aspectRatio={3.5}
                 alt="420Vape"
               />
             </a>
@@ -628,7 +632,7 @@ const PostPage = ({ data }: Props) => {
 
   useInterval(() => {
     setBanner((prevState) => (prevState ? 0 : 1));
-  }, 10000);
+  }, 6000);
 
   if (!post) return null;
 

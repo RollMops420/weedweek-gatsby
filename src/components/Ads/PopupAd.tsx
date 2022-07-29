@@ -1,8 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, ImageDataLike, StaticImage } from 'gatsby-plugin-image';
 import CloseIcon from 'assets/icons/close';
+import useInterval from 'utils/useinterval';
 // import CalendarWebM from '../../assets/images/kalendarz-kwadrat.webm';
 // import CalendarMP4 from '../../assets/images/kalendarz-kwadrat.mp4';
 // import nowyKanalWebM from '../../assets/images/nowykanal.webm';
@@ -63,21 +64,22 @@ interface Props {
 }
 
 const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
+  const [bannerVisible, setBanner] = useState(0);
   const [isVisible, setVisible] = useState(false);
   const hrefWithRef = new URL(href);
   hrefWithRef.searchParams.append('utm_source', 'weedweek.pl');
 
   useEffect(() => {
     const showTimeout = setTimeout(() => {
-      let found = localStorage.getItem(`popup-teledysk-${href}`);
+      let found = localStorage.getItem(`popup-hesi420-${href}`);
       if (!found) {
         setVisible(true);
-        localStorage.setItem(`popup-teledysk-${href}`, '0');
+        localStorage.setItem(`popup-hesi420-${href}`, '0');
       }
       if (found && Number(found) < 3) {
         setVisible(true);
         localStorage.setItem(
-          `popup-teledysk-${href}`,
+          `popup-hesi420-${href}`,
           (Number(found) + 1).toString()
         );
       }
@@ -86,26 +88,53 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
     return () => clearTimeout(showTimeout);
   }, []);
 
-  // useEffect(() => {
-  //   const changeInterval = setInterval(() => {
-  //     if (bannerVisible !== banners.length - 1) {
-  //       setBanner((prevState) => prevState + 1);
-  //     } else {
-  //       setBanner(0);
-  //     }
-  //   }, 5000);
-
-  //   return () => clearInterval(changeInterval);
-  // });
+  useInterval(() => {
+    setBanner((prevState) => (prevState ? 0 : 1));
+  }, 6000);
 
   return (
     <Wrapper visible={isVisible}>
       <CloseWrapper onClick={() => setVisible(false)}>
         <CloseIcon width={48} height={48} />
       </CloseWrapper>
-      <a href={hrefWithRef.href} target="blank">
-        <GatsbyImage image={getImage(source)} alt="" />
+      {bannerVisible === 0 && (
+        <a
+        href="https://vaporshop.pl/pl/211-420vapevape?utm_source=weedweek.pl"
+        style={{
+          display: 'block',
+          width: '100%',
+          borderRadius: 10,
+          overflow: 'hidden',
+        }}
+        target="blank"
+      >
+        <StaticImage
+          layout="fullWidth"
+          src="../../assets/images/420pop.jpg"
+          aspectRatio={1}
+          alt="420Vape"
+        />
       </a>
+      )}
+      {bannerVisible === 1 && (
+        <a
+        href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
+        style={{
+          display: 'block',
+          width: '100%',
+          borderRadius: 10,
+          overflow: 'hidden',
+        }}
+        target="blank"
+      >
+        <StaticImage
+          layout="fullWidth"
+          src="../../assets/images/hesipop.jpg"
+          aspectRatio={1}
+          alt="Hesi"
+        />
+      </a>
+      )}
       {/* <a target="blank" href="https://www.youtube.com/watch?v=pxxRQX7nyxw">
         <video
           playsInline
