@@ -71,15 +71,15 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
 
   useEffect(() => {
     const showTimeout = setTimeout(() => {
-      let found = localStorage.getItem(`popup-hesi420-${href}`);
+      let found = localStorage.getItem(`popup-podk-${href}`);
       if (!found) {
         setVisible(true);
-        localStorage.setItem(`popup-hesi420-${href}`, '0');
+        localStorage.setItem(`popup-podk-${href}`, '0');
       }
       if (found && Number(found) < 3) {
         setVisible(true);
         localStorage.setItem(
-          `popup-hesi420-${href}`,
+          `popup-podk-${href}`,
           (Number(found) + 1).toString()
         );
       }
@@ -99,7 +99,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       </CloseWrapper>
       {bannerVisible === 0 && (
         <a
-        href="https://vaporshop.pl/pl/211-420vapevape?utm_source=weedweek.pl"
+        href="https://podkarpackaklinikakonopna.pl/?utm_source=weedweek.pl"
         style={{
           display: 'block',
           width: '100%',
@@ -110,7 +110,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       >
         <StaticImage
           layout="fullWidth"
-          src="../../assets/images/420pop.jpg"
+          src="../../assets/images/klinikapodk.jpg"
           aspectRatio={1}
           alt="420Vape"
         />
@@ -118,7 +118,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       )}
       {bannerVisible === 1 && (
         <a
-        href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
+        href="https://podkarpackaklinikakonopna.pl/?utm_source=weedweek.pl"
         style={{
           display: 'block',
           width: '100%',
@@ -129,9 +129,9 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       >
         <StaticImage
           layout="fullWidth"
-          src="../../assets/images/hesipop.jpg"
+          src="../../assets/images/klinikapodk.jpg"
           aspectRatio={1}
-          alt="Hesi"
+          alt="Podkarpacka Klinika"
         />
       </a>
       )}
