@@ -110,7 +110,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       >
         <StaticImage
           layout="fullWidth"
-          src="../../assets/images/klinikapodk.jpg"
+          src="../../assets/images/klinikapodk.png"
           aspectRatio={1}
           alt="420Vape"
         />
@@ -129,7 +129,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       >
         <StaticImage
           layout="fullWidth"
-          src="../../assets/images/klinikapodk.jpg"
+          src="../../assets/images/klinikapodk.png"
           aspectRatio={1}
           alt="Podkarpacka Klinika"
         />
