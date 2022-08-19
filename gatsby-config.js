@@ -15,12 +15,17 @@ module.exports = {
         url: 'https://admin.weedweek.pl/graphql/',
         schema: {
           perPage: 20, // currently set to 100
-          requestConcurrency: 4, // currently set to 15
-          previewRequestConcurrency: 4, // currently set to 5
+          requestConcurrency: 5, // currently set to 15
+          previewRequestConcurrency: 2, // currently set to 5
           timeout: 60000,
         },
         develop: {
           hardCacheMediaFiles: true,
+        },
+        production: {
+          hardCacheMediaFiles: true,
+          allow404Images: true,
+          allow401Images: true
         },
         type: {
           Post: {
