@@ -12,10 +12,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        url: 'https://admin.weedweek.pl/graphql/',
+        url: 'https://weedweek-wordpress.stellate.sh/',
         schema: {
-          perPage: 15, // currently set to 100
-          requestConcurrency: 3, // currently set to 15
+          perPage: 30, // currently set to 100
+          requestConcurrency: 5, // currently set to 15
           previewRequestConcurrency: 1, // currently set to 5
           timeout: 60000,
         },
