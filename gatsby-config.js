@@ -14,8 +14,8 @@ module.exports = {
       options: {
         url: 'https://admin.weedweek.pl/graphql/',
         schema: {
-          perPage: 20, // currently set to 100
-          requestConcurrency: 5, // currently set to 15
+          perPage: 10, // currently set to 100
+          requestConcurrency: 3, // currently set to 15
           previewRequestConcurrency: 2, // currently set to 5
           timeout: 60000,
         },
