@@ -25,7 +25,7 @@ const CategoryPage = ({ data, pageContext: { name } }) => {
       <Container top>
         {name !== 'Uprawa' && (
           <a
-            href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+            href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
             style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}
             target="blank"
           >
@@ -34,7 +34,7 @@ const CategoryPage = ({ data, pageContext: { name } }) => {
         )}
         {name === 'Uprawa' && (
           <a
-            href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+            href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
             target="blank"
           >
             <div>

@@ -209,7 +209,7 @@ const Header = ({ theme, setTheme }: { theme: string; setTheme: any }) => {
             </Logo>
           </Link>
           <a
-            href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+            href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
             target="blank"
           >
             <Hesi>

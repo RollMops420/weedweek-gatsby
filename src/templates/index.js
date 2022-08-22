@@ -165,12 +165,12 @@ const HomePage = ({ data }) => {
             </PestkaSquare>
             <a
               style={{ width: '100%', borderRadius: 10, overflow: 'hidden' }}
-              href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+              href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
               target="blank"
             >
               <PestkaWide
                 style={{ width: '100%', borderRadius: 10, overflow: 'hidden' }}
-                href="https://www.hesi.nl/pl?utm_source=weedweek.pl"
+                href="https://www.hemp.pl/kategoria/hesi?utm_source=weedweek.pl"
                 target="blank"
               >
                 <StaticImage
