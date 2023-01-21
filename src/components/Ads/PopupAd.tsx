@@ -71,15 +71,15 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
 
   useEffect(() => {
     const showTimeout = setTimeout(() => {
-      let found = localStorage.getItem(`popup-podk-${href}`);
+      let found = localStorage.getItem(`popup-walen-${href}`);
       if (!found) {
         setVisible(true);
-        localStorage.setItem(`popup-podk-${href}`, '0');
+        localStorage.setItem(`popup-walen-${href}`, '0');
       }
       if (found && Number(found) < 3) {
         setVisible(true);
         localStorage.setItem(
-          `popup-podk-${href}`,
+          `popup-walen-${href}`,
           (Number(found) + 1).toString()
         );
       }
@@ -88,9 +88,9 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
     return () => clearTimeout(showTimeout);
   }, []);
 
-  useInterval(() => {
-    setBanner((prevState) => (prevState ? 0 : 1));
-  }, 6000);
+  // useInterval(() => {
+  //   setBanner((prevState) => (prevState ? 0 : 1));
+  // }, 6000);
 
   return (
     <Wrapper visible={isVisible}>
@@ -99,7 +99,7 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       </CloseWrapper>
       {bannerVisible === 0 && (
         <a
-        href="https://podkarpackaklinikakonopna.pl/?utm_source=weedweek.pl"
+        href="https://rollmops.pl/zielone-pojecie/walentynkowe-zielone-pojecie-2023"
         style={{
           display: 'block',
           width: '100%',
@@ -110,15 +110,15 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       >
         <StaticImage
           layout="fullWidth"
-          src="../../assets/images/klinikapodk.png"
+          src="../../assets/images/4.png"
           aspectRatio={1}
-          alt="420Vape"
+          alt="Walentynkowe zielone pojęcie"
         />
       </a>
       )}
       {bannerVisible === 1 && (
         <a
-        href="https://podkarpackaklinikakonopna.pl/?utm_source=weedweek.pl"
+        href="https://rollmops.pl/zielone-pojecie/walentynkowe-zielone-pojecie-2023"
         style={{
           display: 'block',
           width: '100%',
@@ -129,9 +129,9 @@ const PopupAd = ({ source, href }: { source: ImageDataLike; href: string }) => {
       >
         <StaticImage
           layout="fullWidth"
-          src="../../assets/images/klinikapodk.png"
+          src="../../assets/images/4.png"
           aspectRatio={1}
-          alt="Podkarpacka Klinika"
+          alt="Walentynkowe zielone pojęcie"
         />
       </a>
       )}
